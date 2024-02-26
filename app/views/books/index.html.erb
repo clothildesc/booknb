@@ -2,13 +2,10 @@
 
 <% @books.each do |book| %>
 <div>
-  <%= book.title %>
-  <%= book.author %>
-  <%= book.summary %>
-  <%= book.year %>
-  <%= book.isbn_number %>
-  <%= book.book_picture %>
-  <%= book.editor %>
-  <%= book.status %>
+  <h3><%= link_to book.title, book_path(book) %></h3>
+  <p>Author: <%= book.author %></p>
+  <p>Picture: <%= book.book_picture %></p>
 </div>
 <% end %>
+
+<%= link_to "Add a book", new_book_path %>

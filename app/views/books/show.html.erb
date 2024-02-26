@@ -1,0 +1,15 @@
+<h1><%= @book.title %></h1>
+
+<h3>Details :</h3>
+<div>
+  <p>Author: <%= @book.author %></p>
+  <p>Summary: <%= @book.summary %></p>
+  <p>Year: <%= @book.year %></p>
+  <p>ISBN_number: <%= @book.isbn_number %></p>
+  <p>Picture url: <%= @book.book_picture %></p>
+  <p>Editor: <%= @book.editor %></p>
+  <p>Status: <%= @book.status %></p>
+</div>
+
+<%= link_to "Back to books", books_path %> | <%= link_to "Edit book", edit_book_path %>
+<%= link_to "Delete book", book_path(@book), data: {turbo_method: :delete, turbo_confirm: "Sure?" } %>
