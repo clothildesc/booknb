@@ -1,15 +1,41 @@
-<h1><%= @book.title %></h1>
 
-<h3>Details :</h3>
-<div>
-  <p>Author: <%= @book.author %></p>
-  <p>Summary: <%= @book.summary %></p>
-  <p>Year: <%= @book.year %></p>
-  <p>ISBN_number: <%= @book.isbn_number %></p>
-  <p>Picture url: <%= @book.book_picture %></p>
-  <p>Editor: <%= @book.editor %></p>
-  <p>Status: <%= @book.status %></p>
+<!-- Jumbotron for Cover Image -->
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4"><%= @book.title %></h1>
+    <p class="lead">by <%= @book.author %></p>
+  </div>
 </div>
+
+<!-- Card pour les détails du livre avec image -->
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="https://m.media-amazon.com/images/I/61QTHD3+nSL._SY522_.jpg" class="card-img" alt="Image du livre">
+    </div>
+    <div class="col-md-8">
+      <!-- Card for Book Details -->
+      <div class="card mx-auto" style="width: 50%;">
+        <div class="card-body">
+          <h5 class="card-title"><%= @book.title %></h5>
+          <h6 class="card-subtitle mb-2 text-muted">by <%= @book.author %></h6>
+        </div>
+      </div>
+      <!-- List Group for Additional Details -->
+      <div>
+        <ul class="list-group list-group-flush mx-auto" style="width: 50%;">
+          <li class="list-group-item">Author: <%= @book.author %></li>
+          <li class="list-group-item">Editor: <%= @book.editor %></li>
+          <li class="list-group-item">Publication year: <%= @book.year %></li>
+          <li class="list-group-item">ISBN: <%= @book.isbn_number %></li>
+          <li class="list-group-item">Status: <%= @book.status %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <%= link_to "Back to books", books_path %>
 <%= link_to "Edit book", edit_book_path %>
