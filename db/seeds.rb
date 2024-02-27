@@ -1,6 +1,8 @@
 import "faker"
 
 Book.destroy_all
+Booking.destroy_all
+User.destroy_all
 
   5.times do
     user = User.create!(

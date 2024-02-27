@@ -13,10 +13,12 @@
 <%= link_to "Edit book", edit_book_path %>
 <%= link_to "Delete book", book_path(@book), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 <%# <div data-toggle-target="togglableElement" class="d-block"> %>
+
 <% if @book.status == "booked" %>
-<%= link_to "Cancel the booking", booking_path(@booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-  <% @book.status = "available" %>
+  <% booking = @book.bookings.where(user: current_user) %>
+  <%= link_to "Cancel the booking", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <% @book.update(status: "available") %>
 <% else %>
-<%= link_to "Send a booking request", new_book_booking_path(@book) %>
+  <%= link_to "Send a booking request", new_book_booking_path(@book) %>
 <% end %>
 <%# </div> %>
