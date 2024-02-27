@@ -1,36 +1,25 @@
-require 'httparty'
-require 'json'
+import "faker"
 
-API_KEY = 'AIzaSyAYINi88bPuak2bEasfSPk683HzZmiD-Xs'
-QUERY = 'books'  # Example query
-MAX_RESULTS = 30  # Maximum number of results you want to retrieve
+Book.destroy_all
+Booking.destroy_all
+User.destroy_all
 
-response = HTTParty.get(
-  'https://www.googleapis.com/books/v1/volumes',
-  query: { q: QUERY, key: API_KEY, maxResults: MAX_RESULTS }
-)
+  5.times do
+    user = User.create!(
+      email: Faker::Internet.email,
+      password: 'password'
+    )
 
-if response.success?
-  data = JSON.parse(response.body)
-  items = data['items']
-
-  items.each do |item|
-    volume_info = item['volumeInfo']
-    title = volume_info['title']
-    authors = volume_info['authors'] || ["N/A"]
-    description = volume_info['description'] || "N/A"
-    published_date = volume_info['publishedDate']&.slice(0, 4) || "N/A"
-    isbn = volume_info.dig('industryIdentifiers', 0, 'identifier') || "N/A"
-    publisher = volume_info['publisher'] || "N/A"
-
-    puts "Title: #{title}"
-    puts "Authors: #{authors.join(', ')}"
-    puts "Description: #{description}"
-    puts "Published Date: #{published_date}"
-    puts "ISBN: #{isbn}"
-    puts "Publisher: #{publisher}"
-    puts "------------"
+    2.times do
+      Book.create!(
+        title: Faker::Book.title,
+        author: Faker::Book.author,
+        summary: Faker::Lorem.paragraph(sentence_count: 5),
+        year: Faker::Number.between(from: 1900, to: Time.now.year),
+        isbn_number: Faker::Number.leading_zero_number(digits: 13),
+        editor: Faker::Book.publisher,
+        book_picture: Faker::LoremFlickr.image(size: "200x200", search_terms: ['books']),
+        user: user
+      )
+    end
   end
-else
-  puts "Error: #{response.code}"
-end
