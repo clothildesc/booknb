@@ -1,6 +1,5 @@
 import "faker"
 
-User.destroy_all
 Book.destroy_all
 
   5.times do
@@ -17,7 +16,8 @@ Book.destroy_all
         year: Faker::Number.between(from: 1900, to: Time.now.year),
         isbn_number: Faker::Number.leading_zero_number(digits: 13),
         editor: Faker::Book.publisher,
-        user: user # Associate the book with the user
+        book_picture: Faker::LoremFlickr.image(size: "200x200", search_terms: ['books']),
+        user: user
       )
     end
   end
