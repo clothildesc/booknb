@@ -1,28 +1,8 @@
-.book-image {
-  width: 75%;
-  object-fit: cover; /* pour s'assurer que toute l'image est visible */
-  border-radius: .25rem; /* pour s'aligner sur le style des bordures de la card de Bootstrap */
+.rounded-custom {
+  border-radius: 12px !important;
 }
 
-.detail-separator {
-  border-bottom: 1px solid #dee2e6;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.image-crop {
-  width: 100%; /* Prend la largeur maximale du conteneur parent */
-  max-width: 200px; /* Largeur maximale de l'image */
-  height: auto; /* Hauteur automatique pour maintenir le ratio */
-  aspect-ratio: 2 / 3; /* Maintenir le ratio de l'image (ici 2:3) */
-  overflow: hidden; /* Cache les débordements */
-  display: block; /* Pour que le div se comporte comme un bloc */
-  position: relative; /* Position relative pour que l'image soit correctement placée */
-}
-
-.image-crop img {
-  width: 100%; /* Assurez-vous que l'image remplit complètement le div */
-  height: auto; /* Hauteur automatique pour maintenir le ratio */
-  object-fit: cover; /* Rogne et couvre la zone de div, tout en conservant les proportions */
-  object-position: center; /* Centrer l'image dans le cadre de découpage */
+.rounded-img {
+  border-top-left-radius: 12px; /* Arrondit le coin supérieur gauche */
+  border-bottom-left-radius: 12px;
 }
