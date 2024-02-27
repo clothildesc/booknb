@@ -1,5 +1,8 @@
 import "faker"
 
+User.destroy_all
+Book.destroy_all
+
   5.times do
     user = User.create!(
       email: Faker::Internet.email,
