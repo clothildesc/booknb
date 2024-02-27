@@ -31,6 +31,8 @@ gem "devise"
 
 #Seed
 gem 'httparty'
+gem 'faker'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
