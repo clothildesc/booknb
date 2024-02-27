@@ -1,0 +1,14 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-lg-3">
+      <div class="bg-white rounded p-3 shadow">
+        <h3>Add a book</h3>
+        <%= simple_form_for [book] do |f| %>
+          <%= f.input :title %>
+          <%= f.input :author %>
+          <%= f.submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
