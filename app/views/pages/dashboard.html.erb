@@ -1,0 +1,8 @@
+<h1>My dashboard</h1>
+<div>
+  <% @books.each do |book| %>
+    <p><%= book.title %> - <%= book.status %></p>
+    <!-- Ajoutez des liens pour éditer et supprimer ici -->
+  <% end %>
+  <%= link_to "Ajouter un livre", new_book_path %>
+</div>
