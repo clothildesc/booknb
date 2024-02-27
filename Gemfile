@@ -29,6 +29,9 @@ gem "jbuilder"
 # Authentication
 gem "devise"
 
+#Seed
+gem 'httparty'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
