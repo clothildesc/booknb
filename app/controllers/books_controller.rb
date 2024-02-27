@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: %i[show edit update destroy]
+  before_action :set_book, only: %i[show edit update]
 
   def index
     @books = Book.all
@@ -31,11 +31,6 @@ class BooksController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def destroy
-    @book.destroy
-    redirect_to books_path, status: :see_other
   end
 
   private
