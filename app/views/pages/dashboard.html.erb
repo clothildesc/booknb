@@ -4,7 +4,7 @@
     <% @books.each do |book| %>
       <div class="col-md-3 col-sm-6 mb-4">
         <div class="card-dashboard h-100">
-          <%=image_tag book.book_picture.nil? ? 'the_girl_who_never.jpeg' : book.book_picture, class: "card-img-top" %><%= book.title %>
+        <%= image_tag(book.photo.attached? ? cl_image_path(book.photo.key) : 'book_background.png', class: "card-img-top card_img") %>
           <div class="card-body">
             <h5 class="card-title"><%= book.title %></h5>
             <p class="card-text"><%= book.status %></p>
@@ -19,7 +19,7 @@
     <% @bookings.each do |booking| %>
       <div class="col-md-3 col-sm-6 mb-4">
         <div class="card-dashboard h-100">
-          <%=image_tag booking.book.book_picture.nil? ? 'the_girl_who_never.jpeg' : booking.book.book_picture, class: "card-img-top" %><%= booking.book.title %>
+          <%= image_tag(booking.book.photo.attached? ? cl_image_path(booking.book.photo.key) : 'book_background.png', class: "card-img-top card_img") %>
           <div class="card-body">
             <h5 class="card-title"><%= booking.book.title %></h5>
             <%= link_to 'View Book', book_path(booking.book), class: 'btn btn-primary' %>
