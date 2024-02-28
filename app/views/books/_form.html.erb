@@ -1,12 +1,18 @@
+
 <div class="container py-5">
   <div class="row">
     <div class="col-12 col-md-6 offset-lg-3">
-      <div class="bg-white rounded p-3 shadow">
-        <h3>Add a book</h3>
+        <h2 class="mb-3" >Add a book</h2>
+      <div class="bg-white rounded-custom p-3 shadow">
         <%= simple_form_for [book] do |f| %>
-          <%= f.input :title %>
-          <%= f.input :author %>
-          <%= f.submit %>
+          <%= f.input :title,  label: 'Title', placeholder: 'E.g. The Great Gatsby' %>
+          <%= f.input :author, label: 'Author', placeholder: 'E.g. F. Scott Fitzgerald'%>
+          <%= f.input :year, label: 'Publish date', placeholder: 'E.g. 1925' %>
+          <%= f.input :editor, label: 'Publisher', placeholder: 'E.g. Macmillan Educations' %>
+          <%= f.input :summary, as: :text, label: 'Summary', placeholder: 'Enter a summary of the book', input_html: { rows: 4 } %>
+          <%= f.input :isbn_number, label: 'ISBN', placeholder: 'E.g. 0333791037' %>
+          <%= f.input :photo, as: :file, label: 'Add a photo' %>
+          <%= f.button :submit, 'Add book', class: 'btn btn-primary' %>
         <% end %>
       </div>
     </div>
