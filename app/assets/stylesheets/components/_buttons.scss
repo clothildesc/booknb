@@ -8,6 +8,8 @@
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
   width: 100%;
+  text-align: center; /* Centrer le texte horizontalement */
+  text-decoration: none; /* Supprimer le soulignement du texte du lien */
 
 
   &:hover {
