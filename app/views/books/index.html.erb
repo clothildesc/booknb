@@ -5,16 +5,15 @@
 </div>
 
 <div class="container">
-   <!-- Votre contenu ici -->
-  <div class="row"> <!-- Commence une nouvelle ligne après chaque troisième carte -->
-    <% @books.each_with_index do |book, index| %>
+  <div class="row">
+    <% @books.each do |book| %>
       <div class="col-3 mb-4">
         <div class="d-flex flex-column h-100">
-          <img class="card-img-top card_img" src="<%= book.book_picture %>" alt="Book image"> <!-- Assurez-vous que votre modèle fournit une URL pour l'image -->
+          <%= image_tag(book.photo.attached? ? cl_image_path(book.photo.key) : 'book_background.png', class: "card-img-top card_img") %>
           <div class="flex-grow-1 d-flex flex-column justify-content-between">
             <div>
-              <h5 class="card-title"><%= book.title %></h5> <!-- Utilisez les données du livre pour remplir le titre -->
-              <p class="card-text">Author: <%= book.author %></p> <!-- Utilisez les données du livre pour remplir l'auteur -->
+              <h5 class="card-title"><%= book.title %></h5>
+              <p class="card-text">Author: <%= book.author %></p>
             </div>
               <a href="<%= book_path(book) %>" class="button_card" style="text-decoration: none;">Details</a>            </div>
         </div>
@@ -22,6 +21,7 @@
     <% end %>
   </div>
 </div>
+
 <div style="width: 100%; height: 600px;"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"

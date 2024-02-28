@@ -33,6 +33,10 @@ gem "devise"
 gem 'httparty'
 gem 'faker'
 
+
+#Cloudinary
+gem "cloudinary"
+
 #Geocoder
 gem "geocoder"
 
