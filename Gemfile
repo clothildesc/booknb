@@ -33,8 +33,15 @@ gem "devise"
 gem 'httparty'
 gem 'faker'
 
+
 #Cloudinary
 gem "cloudinary"
+
+#Geocoder
+gem "geocoder"
+
+gem "dotenv-rails"
+
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"

@@ -8,7 +8,9 @@ User.destroy_all
   5.times do
     user = User.create!(
       email: Faker::Internet.email,
-      password: 'password'
+      password: 'password',
+      latitude: Faker::Address.latitude,
+      longitude: Faker::Address.longitude
     )
 
     2.times do
