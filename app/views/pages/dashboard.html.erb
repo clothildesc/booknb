@@ -1,8 +1,30 @@
-<h1>My dashboard</h1>
-<div>
-  <% @books.each do |book| %>
-    <p><%= book.title %> - <%= book.status %></p>
-    <!-- Ajoutez des liens pour éditer et supprimer ici -->
-  <% end %>
-  <%= link_to "Ajouter un livre", new_book_path %>
+<div class="container my-5">
+  <h2 class="mb-4">Your Books</h2>
+  <div class="row">
+    <% @books.each do |book| %>
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="card-dashboard h-100">
+          <img src="<%= book.book_picture %>" class="card-img-top" alt="<%= book.title %>">
+          <div class="card-body">
+            <h5 class="card-title"><%= book.title %></h5>
+            <p class="card-text"><%= book.status %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <h2 class="mb-4">The Books I Borrowed</h2>
+  <div class="row">
+    <% @bookings.each do |booking| %>
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="card-dashboard h-100">
+          <img src="<%= booking.book.book_picture %>" class="card-img-top" alt="<%= booking.book.title %>">
+          <div class="card-body">
+            <h5 class="card-title"><%= booking.book.title %></h5>
+           
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
