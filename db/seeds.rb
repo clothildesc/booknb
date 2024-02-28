@@ -5,6 +5,16 @@ Book.destroy_all
 Booking.destroy_all
 User.destroy_all
 
+  images = [
+    "city_of_orange.jpeg",
+    "harry_potter.jpeg",
+    "in_your_own_backyard.jpeg",
+    "little_frog.png",
+    "percy_jackson.jpeg",
+    "soul.jpeg",
+    "the_girl_who_never.jpeg"
+  ]
+
   5.times do
     user = User.create!(
       email: Faker::Internet.email,

@@ -1,0 +1,31 @@
+<div class="container my-5">
+  <h2 class="mb-4">Your Books</h2>
+  <div class="row">
+    <% @books.each do |book| %>
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="card-dashboard h-100">
+          <%=image_tag book.book_picture.nil? ? 'the_girl_who_never.jpeg' : book.book_picture, class: "card-img-top" %><%= book.title %>
+          <div class="card-body">
+            <h5 class="card-title"><%= book.title %></h5>
+            <p class="card-text"><%= book.status %></p>
+            <%= link_to 'View Book', book_path(book), class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <h2 class="mb-4">The Books I Borrowed</h2>
+  <div class="row">
+    <% @bookings.each do |booking| %>
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="card-dashboard h-100">
+          <%=image_tag booking.book.book_picture.nil? ? 'the_girl_who_never.jpeg' : booking.book.book_picture, class: "card-img-top" %><%= booking.book.title %>
+          <div class="card-body">
+            <h5 class="card-title"><%= booking.book.title %></h5>
+            <%= link_to 'View Book', book_path(booking.book), class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
