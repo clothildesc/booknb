@@ -21,15 +21,23 @@ User.destroy_all
 
   puts "Creating seeds..."
 
-  Book.create!(
-        title: "City of Orange",
-        author: "David Yoon",
-        summary: "A man who can not remember his own name wakes up in an apocalyptic landscape, injured and alone. He has vague memories of life before, but he can't see it clearly and can't grasp how his current situation came to be. He must learn to survive by finding sources of water and foraging for food",
-        year: "2022",
-        isbn_number: "059342218X",
-        editor: "G.P. Putnam's Sons",
-        user: user
-  )
+    book_1 = Book.new(
+      title: "City of Orange",
+      author: "David Yoon",
+      summary: "A man who can not remember his own name wakes up in an apocalyptic landscape, injured and alone. He has vague memories of life before, but he can't see it clearly and can't grasp how his current situation came to be. He must learn to survive by finding sources of water and foraging for food",
+      year: "2022",
+      isbn_number: "059342218X",
+      editor: "G.P. Putnam's Sons",
+      user: User.first
+    )
+
+    book_1.photo.attach(
+      io: File.open('public/images/city_of_orange.jpeg'),
+      filename: 'cover.jpg',
+      content_type: 'image/jpeg'
+    )
+
+    book_1.save!
 
   5.times do
     user = User.create!(
@@ -52,7 +60,7 @@ User.destroy_all
 
     #   file = URI.open(Faker::LoremFlickr.image(size: "310x420", search_terms: ['book']))
     #   book.photo.attach(io: file, filename: "book_cover.png", content_type: "image/jpg")
-    end
+    # end
   end
 
 puts "Finished!"

@@ -15,10 +15,11 @@
               <span class="badge rounded-pill bg-danger fw-normal">Booked</span>
             <% else %>
               <span class="badge rounded-pill bg-success fw-normal">Available</span>
-            <% end %></p>
+            <% end %>
+          </p>
           <div>
-            <% booking = @book.bookings.where(user: current_user) %>
             <% if @book.user_id != current_user.id %>
+              <% booking = @book.bookings.where(user: current_user) %>
               <% if booking.any? %>
                 <%= link_to "Cancel the booking", booking_path(booking.first), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger text-light mt-3'  %>
               <% else %>
@@ -55,4 +56,3 @@
 
   </div>
 </div>
-
