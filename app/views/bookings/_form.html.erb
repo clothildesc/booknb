@@ -1,16 +1,16 @@
-<div class="container py-5">
+<div class="container py-5" style="margin-top: 90px">
   <div class="row">
     <div class="col-12 col-md-6 offset-lg-3">
-      <div class="bg-white rounded p-3 shadow">
-        <h3>Send a booking request</h3>
-        <%= simple_form_for [book, booking] do |f| %>
-          <%= f.input :start_date %>
-          <%= f.input :end_date %>
-          <%# <button data-action="click->toggle#bookingRequest" class="btn btn-outline-primary">Send a booking request</button> %>
-          <%= f.submit %>
-          </div>
-          <%= link_to "Back", book_path(@book) %>
+        <h2 class="mb-3" >Send a booking request</h2>
+      <div class="bg-white rounded-custom p-3 shadow">
+        <%= simple_form_for [book, booking], html: { data: { controller: "datepicker" } } do |f| %>
+        <%= f.input :start_date, as: :hidden, input_html: { data: { datepicker_target: "startDateInput" } } %>
+        <%= f.input :end_date, as: :hidden, input_html: { data: { datepicker_target: "endDateInput" } }%>
+        <%= f.input :range, label: "Select a range of dates" do %>
+          <%= text_field_tag :range, nil, data: { datepicker_target: :range }, class: "form-control" %>
         <% end %>
+        <%= f.button :submit, 'Send request', class: 'btn btn-success' %>
+      <% end %>
       </div>
     </div>
   </div>

@@ -2,4 +2,9 @@
   border-radius: 12px !important;
 }
 
-
+.fixed-size-image {
+  display: block; /* Assure que l'image est bien affichée comme un bloc */
+  max-width: 420px; /* Permet à l'image d'être réactive jusqu'à la taille spécifiée */
+  height: auto; /* Maintient les proportions de l'image */
+  object-fit: cover; /* Couvre la zone spécifiée par width et height sans perdre les proportions */
+}
