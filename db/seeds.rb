@@ -18,6 +18,7 @@ User.destroy_all
 
 
   User.create!(email: "toto@gmail.com", password: "123456", latitude: 48.8566, longitude: 2.3522)
+  User.create!(email: "titi@gmail.com", password: "123456", latitude: 48.8566, longitude: 2.3522)
 
   puts "Creating seeds..."
 
