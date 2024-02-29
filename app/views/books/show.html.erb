@@ -1,5 +1,5 @@
 <div class="container mt-5">
-<!-- Book Card Section -->
+  <!-- Book Card Section -->
   <div class="card mb-3 border-0">
     <div class="row g-0">
       <div class="col-md-4">
@@ -10,37 +10,41 @@
         <div class="card-body">
           <!-- Book informations Section -->
           <h3 class="card-title"><%= @book.title %></h3>
-          <p class="card-text">By <%= @book.author %> |
+          <p class="card-text">By <%= @book.author %>
+            <% if @book.user_id == current_user.id %>
+            <% end %>
             <% if @book.status == "booked" %>
               <span class="badge rounded-pill bg-danger fw-normal">Booked</span>
             <% else %>
               <span class="badge rounded-pill bg-success fw-normal">Available</span>
             <% end %></p>
+       
           <div>
             <% booking = @book.bookings.where(user: current_user) %>
-            <% if booking.any? %>
-              <%= link_to "Cancel the booking", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger text-light mt-3' %>
-              <% @book.update(status: "available") %>
-            <% else %>
-               <%= link_to "Send a booking request", new_book_booking_path(@book), class: 'btn btn-primary mt-3' %>
-               <% @book.update(status: "booked") %>
+            <% if @book.user_id != current_user.id %>
+              <% if booking.any? %>
+                <%= link_to "Cancel the booking", booking_path(booking.first), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger text-light mt-3'  %>
+              <% else %>
+                <%= link_to "Send a booking request", new_book_booking_path(@book), class: 'btn btn-primary mt-3' %>
+              <% end %>
             <% end %>
           </div>
+
           <!-- Book Details Section -->
           <div class="row my-5">
             <div class="col">
-                <ul class="list-group list-group-flush bg-white">
-                  <li class="list-group-item list-group-item-sucess"><strong>Editor:</strong> <%= @book.editor %></li>
-                  <li class="list-group-item"><strong>Publication year:</strong> <%= @book.year %></li>
-                  <li class="list-group-item"><strong>ISBN:</strong> <%= @book.isbn_number %></li>
-                  <li class="list-group-item"><strong>Status:</strong> <%= @book.status %></li>
-                </ul>
+              <ul class="list-group list-group-flush bg-white">
+                <li class="list-group-item list-group-item-sucess"><strong>Editor:</strong> <%= @book.editor %></li>
+                <li class="list-group-item"><strong>Publication year:</strong> <%= @book.year %></li>
+                <li class="list-group-item"><strong>ISBN:</strong> <%= @book.isbn_number %></li>
+                <li class="list-group-item"><strong>Status:</strong> <%= @book.status %></li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-
       <!-- Book Summary Section -->
+
       <div class="row my-5">
           <div class="col">
             <h3>Summary</h3>
@@ -55,3 +59,4 @@
 
   </div>
 </div>
+
