@@ -21,6 +21,15 @@ User.destroy_all
 
   puts "Creating seeds..."
 
+  Book.create!(
+        title: "City of Orange",
+        author: "David Yoon",
+        summary: "A man who can not remember his own name wakes up in an apocalyptic landscape, injured and alone. He has vague memories of life before, but he can't see it clearly and can't grasp how his current situation came to be. He must learn to survive by finding sources of water and foraging for food",
+        year: "2022",
+        isbn_number: "059342218X",
+        editor: "G.P. Putnam's Sons",
+        user: user
+  )
 
   5.times do
     user = User.create!(
@@ -30,19 +39,19 @@ User.destroy_all
       longitude: Faker::Address.longitude
     )
 
-    2.times do
-      book = Book.create!(
-        title: Faker::Book.title,
-        author: Faker::Book.author,
-        summary: Faker::Lorem.paragraph(sentence_count: 5),
-        year: Faker::Number.between(from: 1900, to: Time.now.year),
-        isbn_number: Faker::Number.leading_zero_number(digits: 13),
-        editor: Faker::Book.publisher,
-        user: user
-      )
+    # 2.times do
+    #   book = Book.create!(
+    #     title: Faker::Book.title,
+    #     author: Faker::Book.author,
+    #     summary: Faker::Lorem.paragraph(sentence_count: 5),
+    #     year: Faker::Number.between(from: 1900, to: Time.now.year),
+    #     isbn_number: Faker::Number.leading_zero_number(digits: 13),
+    #     editor: Faker::Book.publisher,
+    #     user: user
+    #   )
 
-      file = URI.open(Faker::LoremFlickr.image(size: "310x420", search_terms: ['book']))
-      book.photo.attach(io: file, filename: "book_cover.png", content_type: "image/jpg")
+    #   file = URI.open(Faker::LoremFlickr.image(size: "310x420", search_terms: ['book']))
+    #   book.photo.attach(io: file, filename: "book_cover.png", content_type: "image/jpg")
     end
   end
 

@@ -11,14 +11,11 @@
           <!-- Book informations Section -->
           <h3 class="card-title"><%= @book.title %></h3>
           <p class="card-text">By <%= @book.author %>
-            <% if @book.user_id == current_user.id %>
-            <% end %>
             <% if @book.status == "booked" %>
               <span class="badge bg-danger">Booked</span>
             <% else %>
               <span class="badge bg-success">Available</span>
             <% end %></p>
-       
           <div>
             <% booking = @book.bookings.where(user: current_user) %>
             <% if @book.user_id != current_user.id %>
@@ -29,7 +26,6 @@
               <% end %>
             <% end %>
           </div>
-
           <!-- Book Details Section -->
           <div class="row my-5">
             <div class="col">
