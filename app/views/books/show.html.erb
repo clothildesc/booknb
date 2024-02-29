@@ -1,4 +1,9 @@
-<div class="container mt-5">
+<div class="container my-5">
+  <!-- Buttons -->
+  <div class="mt-5 mb-4">
+    <%= link_to "← Back to books", books_path, style:"text-decoration: none; color: black" %>
+  </div>
+
   <!-- Book Card Section -->
   <div class="card mb-3 border-0">
     <div class="row g-0">
@@ -10,13 +15,16 @@
         <div class="card-body">
           <!-- Book informations Section -->
           <h3 class="card-title"><%= @book.title %></h3>
-          <p class="card-text">By <%= @book.author %>
-            <% if @book.status == "booked" %>
-              <span class="badge rounded-pill bg-danger fw-normal">Booked</span>
-            <% else %>
-              <span class="badge rounded-pill bg-success fw-normal">Available</span>
-            <% end %>
-          </p>
+          <div class="d-flex">
+            <p class="card-text me-4">By <%= @book.author %></p>
+            <p>
+              <% if @book.status == "booked" %>
+                <span class="badge rounded-pill bg-danger fw-normal">Booked</span>
+              <% else %>
+                <span class="badge rounded-pill bg-success fw-normal">Available</span>
+              <% end %>
+            </p>
+          </div>
           <div>
             <% if @book.user_id != current_user.id %>
               <% booking = @book.bookings.where(user: current_user) %>
@@ -34,7 +42,6 @@
                 <li class="list-group-item list-group-item-sucess"><strong>Editor:</strong> <%= @book.editor %></li>
                 <li class="list-group-item"><strong>Publication year:</strong> <%= @book.year %></li>
                 <li class="list-group-item"><strong>ISBN:</strong> <%= @book.isbn_number %></li>
-                <li class="list-group-item"><strong>Status:</strong> <%= @book.status %></li>
               </ul>
             </div>
           </div>
@@ -48,11 +55,6 @@
             <p class="book-summary"><%= @book.summary%></p>
           </div>
       </div>
-
-      <!-- Buttons -->
-      <div class="mb-5">
-        <%= link_to "⏎ Back to books", books_path, style:"text-decoration: none; color: black" %>
-      </div>
-
+    </div>
   </div>
 </div>
