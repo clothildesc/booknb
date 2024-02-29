@@ -1,28 +1,37 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://resize.elle.fr/original/var/plain_site/storage/images/loisirs/livres/news/voici-le-livre-le-plus-vendu-en-france-en-2022-et-ce-n-est-pas-un-roman-4085975/98031195-1-fre-FR/Voici-le-livre-le-plus-vendu-en-France-en-2022-et-ce-n-est-pas-un-roman.jpg);">
+<div class="banner">
   <div class="container">
     <h1><strong>Find books and borrow from neighbors</strong></h1>
   </div>
 </div>
-
-
 <div class="container-fluid">
   <div class="row">
     <div class="col-8 ps-0">
       <div class="cards-container">
         <% @books.each do |book| %>
-            <div class="book-card d-flex flex-column ms-2 mb-3">
-              <%= link_to book_path(book), style:"text-decoration: none; color: black" do %>
+          <div class="book-card ms-2 mb-3">
+          <%= link_to book_path(book), style:"text-decoration: none; color: black" do %>
+            <div class="book-card-inner">
+              <div class="book-card-front">
                 <%= image_tag (book.photo.attached? ? cl_image_path(book.photo.key) : 'book_background.png'), class: "rounded w-100" %>
-                <h5 class="card-title mt-3"><%= book.title %></h5>
-                <p class="card-text mt-1">By <%= book.author %></p>
-              <% end %>
+                <h5 class="card-title ms-3 mt-3"><%= book.title %></h5>
+                <p class="card-text ms-3 mt-1">By <%= book.author %></p>
+              </div>
+
+              <div class="book-card-back">
+                <div class="text-center pt-4 ps-3 pe-3 pb-4">
+                <p><%= book.summary %></p>
+                </div>
+              </div>
             </div>
+          <%end %>
+          </div>
         <% end %>
       </div>
+
     </div>
-    <div class="col-4 pe-0">
+    <div class="col-4 mt-3 pe-0">
       <div class="sticky-top">
-        <div style="width: 100%; height: 600px;"
+        <div style="width: 100%; height: 600px; border-radius: 8px;"
               data-controller="map"
               data-map-markers-value="<%= @markers.to_json %>"
               data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
