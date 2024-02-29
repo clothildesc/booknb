@@ -14,8 +14,6 @@ class BooksController < ApplicationController
   end
 
   def show
-    # @booking = Booking.new
-    # @book = Book.find(params[:id])
   end
 
   def new
