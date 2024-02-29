@@ -1,6 +1,7 @@
 require "faker"
 require "open-uri"
 
+puts "Deleting books, bookings, users..."
 Book.destroy_all
 Booking.destroy_all
 User.destroy_all
@@ -15,7 +16,11 @@ User.destroy_all
     "the_girl_who_never.jpeg"
   ]
 
+
   User.create!(email: "toto@gmail.com", password: "123456", latitude: 48.8566, longitude: 2.3522)
+
+  puts "Creating seeds..."
+
 
   5.times do
     user = User.create!(
@@ -36,7 +41,9 @@ User.destroy_all
         user: user
       )
 
-      file = URI.open(Faker::LoremFlickr.image(size: "200x200", search_terms: ['books']))
+      file = URI.open(Faker::LoremFlickr.image(size: "310x420", search_terms: ['book']))
       book.photo.attach(io: file, filename: "book_cover.png", content_type: "image/jpg")
     end
   end
+
+puts "Finished!"
