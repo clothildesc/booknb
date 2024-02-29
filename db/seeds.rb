@@ -6,24 +6,32 @@ Book.destroy_all
 Booking.destroy_all
 User.destroy_all
 
-  # images = [
-  #   "city_of_orange.jpeg",
-  #   "harry_potter.jpeg",
-  #   "in_your_own_backyard.jpeg",
-  #   "little_frog.png",
-  #   "percy_jackson.jpeg",
-  #   "soul.jpeg",
-  #   "the_girl_who_never.jpeg"
-  # ]
+adresses = [
+  "10 Rue de Rivoli, Paris",
+  "25 Avenue des Champs-Élysées, Paris",
+  "7 Rue de la Paix, Paris",
+  "15 Rue de la République, Paris",
+  "30 Boulevard Haussmann, Paris"
+]
+
+  images = [
+    "city_of_orange.jpeg",
+    "harry_potter.jpeg",
+    "in_your_own_backyard.jpeg",
+    "little_frog.png",
+    "percy_jackson.jpeg",
+    "soul.jpeg",
+    "the_girl_who_never.jpeg"
+  ]
 
 
-  user_1 = User.create!(email: "toto@gmail.com", password: "123456", latitude: 48.8566, longitude: 2.3522)
-  user_2 = User.create!(email: "titi@gmail.com", password: "123456", latitude: 48.86753271571253, longitude: 2.364425685984004)
-  user_3 = User.create!(email: "tonton@gmail.com", password: "123456", latitude: 48.87255625477497, longitude: 2.3899821644551045)
-  user_4 = User.create!(email: "tata@gmail.com", password: "123456", latitude: 48.862389553403816, longitude: 2.277156918329369)
-  user_5 = User.create!(email: "tutu@gmail.com", password: "123456", latitude: 48.8912449193936, longitude: 2.343758639458462)
-  user_6 = User.create!(email: "tete@gmail.com", password: "123456", latitude: 48.82845404562908, longitude: 2.3530566214260165)
-  user_7 = User.create!(email: "tititi@gmail.com", password: "123456", latitude: 48.85193905780452, longitude: 2.35622670148584)
+  user_1 = User.create!(email: "toto@gmail.com", password: "123456", address: adresses.sample)
+  user_2 = User.create!(email: "titi@gmail.com", password: "123456", address: adresses.sample)
+  user_3 = User.create!(email: "tonton@gmail.com", password: "123456", address: adresses.sample)
+  user_4 = User.create!(email: "tata@gmail.com", password: "123456", address: adresses.sample)
+  user_5 = User.create!(email: "tutu@gmail.com", password: "123456", address: adresses.sample)
+  user_6 = User.create!(email: "tete@gmail.com", password: "123456", address: adresses.sample)
+  user_7 = User.create!(email: "tititi@gmail.com", password: "123456", address: adresses.sample)
 
   puts "Creating seeds..."
 
