@@ -12,18 +12,18 @@
           <h3 class="card-title"><%= @book.title %></h3>
           <p class="card-text">By <%= @book.author %> |
             <% if @book.status == "booked" %>
-              <span class="badge bg-danger">Booked</span>
+              <span class="badge rounded-pill bg-danger fw-normal">Booked</span>
             <% else %>
-              <span class="badge bg-success">Available</span>
+              <span class="badge rounded-pill bg-success fw-normal">Available</span>
             <% end %></p>
           <div>
-            <% if @book.status == "booked" %>
-              <% booking = @book.bookings.where(user: current_user) %>
+            <% booking = @book.bookings.where(user: current_user) %>
+            <% if booking.any? %>
               <%= link_to "Cancel the booking", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger text-light mt-3' %>
-              <% @book.update(status: "booked") %>
-            <% else %>
-              <%= link_to "Send a booking request", new_book_booking_path(@book), class: 'btn btn-primary mt-3'  %>
               <% @book.update(status: "available") %>
+            <% else %>
+               <%= link_to "Send a booking request", new_book_booking_path(@book), class: 'btn btn-primary mt-3' %>
+               <% @book.update(status: "booked") %>
             <% end %>
           </div>
           <!-- Book Details Section -->
@@ -41,25 +41,17 @@
       </div>
 
       <!-- Book Summary Section -->
-      <div class="row mb-5">
+      <div class="row my-5">
           <div class="col">
             <h3>Summary</h3>
             <p class="book-summary"><%= @book.summary%></p>
           </div>
-    </div>
+      </div>
 
-    <!-- Buttons -->
-    <div class="mb-5">
-    <%= link_to "Back to books", books_path %>
-    <%= link_to "Edit book", edit_book_path %>
-    <%= link_to "Delete book", book_path(@book), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+      <!-- Buttons -->
+      <div class="mb-5">
+        <%= link_to "⏎ Back to books", books_path, style:"text-decoration: none; color: black" %>
+      </div>
 
-    <% booking = @book.bookings.where(user: current_user) %>
-    <% if booking.any? %>
-      <%= link_to "Cancel the booking", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-    <% @book.update(status: "available") %>
-    <% else %>
-      <%= link_to "Send a booking request", new_book_booking_path(@book) %>
-    <% end %>
-    </div>
+  </div>
 </div>
