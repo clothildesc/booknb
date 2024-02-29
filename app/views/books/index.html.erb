@@ -1,9 +1,22 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://resize.elle.fr/original/var/plain_site/storage/images/loisirs/livres/news/voici-le-livre-le-plus-vendu-en-france-en-2022-et-ce-n-est-pas-un-roman-4085975/98031195-1-fre-FR/Voici-le-livre-le-plus-vendu-en-France-en-2022-et-ce-n-est-pas-un-roman.jpg);">
   <div class="container">
     <h1><strong>Find books and borrow from neighbors</strong></h1>
+      <div class="row justify-content-center">
+        <div class="col-sm-4 my-3">
+          <%= form_with url: books_path, method: :get, class: "d-flex", id: "input_field" do %>
+            <%= text_field_tag :query,
+                  params[:query],
+                  class: "form-control",
+                  placeholder: "Type a keyword"
+            %>
+            <%= submit_tag "Search", name: "", class: "btn btn-primary", id: "btn_search" %>
+          <% end %>
+        </div>
+      </div>
   </div>
 </div>
 
+<div class="page-container d-flex">
 <div class="container">
   <div class="row">
     <% @books.each do |book| %>
@@ -19,11 +32,12 @@
         </div>
       </div>
     <% end %>
-  </div>
-</div>
-
-<div style="width: 100%; height: 600px;"
+<div class="map-container col-3" style="width: 100%; height: 600px;"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+  </div>
+</div>
+
 </div>

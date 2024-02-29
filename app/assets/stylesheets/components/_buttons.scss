@@ -1,15 +1,16 @@
 .button_card {
   padding: 2px 4px; /* Réduire davantage la taille du bouton */
   border: 0;
-  border-radius: 10px; /* Changer le rayon de bordure pour rendre le bouton plus petit */
-  background-color: #1b998b; /* Changer la couleur du fond */
-  color: #ffffff;
-  font-weight: bold;
+  border-radius: 5px; /* Changer le rayon de bordure pour rendre le bouton plus petit */
+  background-color: rgba(25, 25, 25, 1); /* Changer la couleur du fond */
+  color: #F2F2F2;
+  // font-weight: bold;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
   width: 100%;
   text-align: center; /* Centrer le texte horizontalement */
   text-decoration: none; /* Supprimer le soulignement du texte du lien */
+  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 
   &:hover {
@@ -25,4 +26,6 @@
     box-shadow: none;
     transform: scale(0.98);
   }
+
+  
 }

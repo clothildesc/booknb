@@ -5,10 +5,22 @@ class BooksController < ApplicationController
     @books = Book.all
     @users = User.all
     @markers = @users.geocoded.map do |user|
+    lat_lng = Geocoder.coordinates(user.address)
       {
-        lat: user.latitude,
-        lng: user.longitude
+        lat: lat_lng[0],
+        lng: lat_lng[1]
       }
+    end
+    if params[:query].present?
+      sql_subquery = <<~SQL
+        books.title @@ :query
+        OR books.author @@ :query
+      SQL
+      @books = @books.where(sql_subquery, query: params[:query])
+
+      # sql_subquery = "title ILIKE :query OR author ILIKE :query"
+      # @books = @books.where(sql_subquery, query: "%#{params[:query]}%")
+      # @books = @books.where("title ILIKE ?", "%#{params[:query]}%")
     end
   end
 

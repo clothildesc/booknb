@@ -5,6 +5,14 @@ Book.destroy_all
 Booking.destroy_all
 User.destroy_all
 
+adresses = [
+  "10 Rue de Rivoli, Paris",
+  "25 Avenue des Champs-Élysées, Paris",
+  "7 Rue de la Paix, Paris",
+  "15 Rue de la République, Paris",
+  "30 Boulevard Haussmann, Paris"
+]
+
   images = [
     "city_of_orange.jpeg",
     "harry_potter.jpeg",
@@ -19,8 +27,9 @@ User.destroy_all
     user = User.create!(
       email: Faker::Internet.email,
       password: 'password',
-      latitude: Faker::Address.latitude,
-      longitude: Faker::Address.longitude
+      address: adresses.sample
+      # latitude: Faker::Address.latitude,
+      # longitude: Faker::Address.longitude
     )
 
     2.times do
