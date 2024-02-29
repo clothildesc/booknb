@@ -4,20 +4,16 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
-    @users = User.all
-
-    distance = params[:distance] || 1000
-
     if user_signed_in?
-      @users = @users.near(current_user.address, distance)
-      @books = Book.where(user_id: @users.pluck(:id))
+      @users = User.near(current_user.address, 3)
+    else
+      @users = User.all
     end
 
     @markers = @users.geocoded.map do |user|
-      lat_lng = Geocoder.coordinates(user.address)
       {
-        lat: lat_lng[0],
-        lng: lat_lng[1]
+        lat: user.latitude,
+        lng: user.longitude
       }
     end
 
