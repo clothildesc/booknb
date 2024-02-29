@@ -8,7 +8,7 @@
     <div class="row g-0">
       <div class="col-md-4">
         <!-- Image -->
-        <%= image_tag(@book.photo.attached? ? cl_image_path(@book.photo.key) : 'book_background.png', class: "img-fluid rounded-custom") %>
+        <%= image_tag(@book.photo.attached? ? cl_image_path(@book.photo.key) : 'book_background.png', class: "fixed-size-image rounded-custom") %>
       </div>
       <div class="col-md-8">
         <div class="card-body">
