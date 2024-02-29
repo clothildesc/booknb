@@ -6,17 +6,6 @@ Book.destroy_all
 Booking.destroy_all
 User.destroy_all
 
-  # images = [
-  #   "city_of_orange.jpeg",
-  #   "harry_potter.jpeg",
-  #   "in_your_own_backyard.jpeg",
-  #   "little_frog.png",
-  #   "percy_jackson.jpeg",
-  #   "soul.jpeg",
-  #   "the_girl_who_never.jpeg"
-  # ]
-
-
   user_1 = User.create!(email: "toto@gmail.com", password: "123456", latitude: 48.8566, longitude: 2.3522)
   user_2 = User.create!(email: "titi@gmail.com", password: "123456", latitude: 48.86753271571253, longitude: 2.364425685984004)
   user_3 = User.create!(email: "tonton@gmail.com", password: "123456", latitude: 48.87255625477497, longitude: 2.3899821644551045)
