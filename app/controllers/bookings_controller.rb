@@ -11,7 +11,6 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.book = @book
     if @booking.save
-      @book.update(status: "booked")
       redirect_to book_path(@book)
     else
       render :new, status: :unprocessable_entity
@@ -26,6 +25,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:book_id, :start_date, :end_date)
+    params.require(:booking).permit(:book_id, :start_date, :end_date, :status)
   end
 end

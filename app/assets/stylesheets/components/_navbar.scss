@@ -18,3 +18,39 @@ $navbar-height: 85px;
 .navbar-filler {
   height: $navbar-height;
 }
+button {
+  padding: 0px 1px;
+  font-size: 16px;
+  border: 1px solid #000000A6; /* Ajout de la bordure */
+  border-radius: 50px;
+  color: #000000A6;
+  z-index: 1;
+  background: white;
+  position: relative;
+  font-weight: 500;
+  font-family: 'Work Sans', Helvetica, sans-serif;
+  transition: all 250ms;
+  overflow: hidden;
+}
+
+
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 15px;
+  background-color: #f4f4f4;
+  z-index: -1;
+  transition: all 250ms;
+}
+
+button:hover {
+  color: #e8e8e8;
+}
+
+button:hover::before {
+  width: 100%;
+}
