@@ -39,19 +39,27 @@
           </div>
         </div>
       </div>
+
+      <!-- Book Summary Section -->
+      <div class="row mb-5">
+          <div class="col">
+            <h3>Summary</h3>
+            <p class="book-summary"><%= @book.summary%></p>
+          </div>
     </div>
-  </div>
-  <!-- Book Summary Section -->
-  <div class="row my-5">
-      <div class="col">
-        <h3>Summary</h3>
-        <p class="book-summary"><%= @book.summary%></p>
-      </div>
-  </div>
-  <!-- Buttons -->
-  <div class="mb-5">
-  <%= link_to "Back to books", books_path %>
-  <%= link_to "Edit book", edit_book_path %>
-  <%= link_to "Delete book", book_path(@book), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-  </div>
+
+    <!-- Buttons -->
+    <div class="mb-5">
+    <%= link_to "Back to books", books_path %>
+    <%= link_to "Edit book", edit_book_path %>
+    <%= link_to "Delete book", book_path(@book), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+
+    <% booking = @book.bookings.where(user: current_user) %>
+    <% if booking.any? %>
+      <%= link_to "Cancel the booking", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+    <% @book.update(status: "available") %>
+    <% else %>
+      <%= link_to "Send a booking request", new_book_booking_path(@book) %>
+    <% end %>
+    </div>
 </div>

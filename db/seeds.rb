@@ -16,7 +16,11 @@ User.destroy_all
     "the_girl_who_never.jpeg"
   ]
 
+
+  User.create!(email: "toto@gmail.com", password: "123456", latitude: 48.8566, longitude: 2.3522)
+
   puts "Creating seeds..."
+
 
   5.times do
     user = User.create!(

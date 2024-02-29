@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @books = Book.all
@@ -13,8 +14,6 @@ class BooksController < ApplicationController
   end
 
   def show
-    # @booking = Booking.new
-    # @book = Book.find(params[:id])
   end
 
   def new
