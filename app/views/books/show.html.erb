@@ -1,68 +1,57 @@
- <div class="container mt-5">
-  <div class="row justify-content-md-center">
-    <div class="col-6">
-      <!-- Book Top Section -->
-      <div class="card mb-5 bg-white rounded-custom border-0 shadow-sm">
-        <div class="row">
-          <div class="col-md-4">
-            <img src="<%= @book.book_picture %>" class="img-fluid rounded-img" alt="book image">
+<div class="container mt-5">
+<!-- Book Card Section -->
+  <div class="card mb-3 border-0">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <!-- Image -->
+        <%= image_tag(@book.photo.attached? ? cl_image_path(@book.photo.key) : 'book_background.png', class: "img-fluid rounded-custom") %>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <!-- Book informations Section -->
+          <h3 class="card-title"><%= @book.title %></h3>
+          <p class="card-text">By <%= @book.author %> |
+            <% if @book.status == "booked" %>
+              <span class="badge bg-danger">Booked</span>
+            <% else %>
+              <span class="badge bg-success">Available</span>
+            <% end %></p>
+          <div>
+            <% if @book.status == "booked" %>
+              <% booking = @book.bookings.where(user: current_user) %>
+              <%= link_to "Cancel the booking", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger text-light mt-3' %>
+              <% @book.update(status: "booked") %>
+            <% else %>
+              <%= link_to "Send a booking request", new_book_booking_path(@book), class: 'btn btn-primary mt-3'  %>
+              <% @book.update(status: "available") %>
+            <% end %>
           </div>
-        <div class="col-md-8">
-          <div class="card-body ps-5">
-            <h2 class="card-title"><%= @book.title %></h2>
-            <p class="card-text">by <%= @book.author %></p>
-            <!-- Send Request Button Placeholder -->
-
-        <% if @book.status == "booked" %>
-            <% booking = @book.bookings.where(user: current_user) %>
-            <%= link_to "Cancel the booking", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger text-light mt-3' %>
-            <% @book.update(status: "booked") %>
-          <% else %>
-            <%= link_to "Send a booking request", new_book_booking_path(@book), class: 'btn btn-primary mt-3'  %>
-             <% @book.update(status: "available") %>
-          <% end %>
-
-            <%# <button type="button" class="btn btn-primary mt-3">Send request</button> %>
+          <!-- Book Details Section -->
+          <div class="row my-5">
+            <div class="col">
+                <ul class="list-group list-group-flush bg-white">
+                  <li class="list-group-item list-group-item-sucess"><strong>Editor:</strong> <%= @book.editor %></li>
+                  <li class="list-group-item"><strong>Publication year:</strong> <%= @book.year %></li>
+                  <li class="list-group-item"><strong>ISBN:</strong> <%= @book.isbn_number %></li>
+                  <li class="list-group-item"><strong>Status:</strong> <%= @book.status %></li>
+                </ul>
+            </div>
           </div>
         </div>
-        </div>
       </div>
-
-      <!-- Book Details Section -->
-      <div class="row mb-5">
-          <div class="col">
-              <h3>Details</h3>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>Author:</strong> <%= @book.author %></li>
-                <li class="list-group-item"><strong>Editor:</strong> <%= @book.editor %></li>
-                <li class="list-group-item"><strong>Publication year:</strong> <%= @book.year %></li>
-                <li class="list-group-item"><strong>ISBN:</strong> <%= @book.isbn_number %></li>
-                <li class="list-group-item"><strong>Status:</strong> <%= @book.status %></li>
-              </ul>
-          </div>
+    </div>
+  </div>
+  <!-- Book Summary Section -->
+  <div class="row my-5">
+      <div class="col">
+        <h3>Summary</h3>
+        <p class="book-summary"><%= @book.summary%></p>
       </div>
-
-      <!-- Book Summary Section -->
-      <div class="row mb-5">
-          <div class="col">
-            <h3>Summary</h3>
-            <p class="book-summary"><%= @book.summary%></p>
-          </div>
-    </div>
-
-    <!-- Buttons -->
-    <div class="mb-5">
-    <%= link_to "Back to books", books_path %>
-    <%= link_to "Edit book", edit_book_path %>
-    <%= link_to "Delete book", book_path(@book), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-
-    <% if @book.status == "booked" %>
-      <% booking = @book.bookings.where(user: current_user) %>
-      <%= link_to "Cancel the booking", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-      <% @book.update(status: "available") %>
-     <% else %>
-       <%= link_to "Send a booking request", new_book_booking_path(@book) %>
-     <% end %>
-    </div>
-
+  </div>
+  <!-- Buttons -->
+  <div class="mb-5">
+  <%= link_to "Back to books", books_path %>
+  <%= link_to "Edit book", edit_book_path %>
+  <%= link_to "Delete book", book_path(@book), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  </div>
 </div>
