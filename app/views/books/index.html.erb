@@ -1,15 +1,16 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://resize.elle.fr/original/var/plain_site/storage/images/loisirs/livres/news/voici-le-livre-le-plus-vendu-en-france-en-2022-et-ce-n-est-pas-un-roman-4085975/98031195-1-fre-FR/Voici-le-livre-le-plus-vendu-en-France-en-2022-et-ce-n-est-pas-un-roman.jpg);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.shutterstock.com/image-photo/bokeh-landscape-closeup-left-hand-260nw-2394578275.jpg); backdrop-filter: blur(5px);">
   <div class="container">
     <h1><strong>Find books and borrow from neighbors</strong></h1>
       <div class="row justify-content-center">
         <div class="col-sm-4 my-3">
-          <%= form_with url: books_path, method: :get, class: "d-flex", id: "input_field" do %>
+          <%= form_with url: books_path, method: :get, class: "d-flex"  do %>
             <%= text_field_tag :query,
                   params[:query],
-                  class: "form-control",
+                  class: "form-control", id: "input_field",
                   placeholder: "Type a keyword"
             %>
-            <%= submit_tag "Search", name: "", class: "btn btn-primary", id: "btn_search" %>
+            <button type="submit" class="btn btn-success" id="btn_search">
+              <i class="fa-solid fa-magnifying-glass"></i>
           <% end %>
         </div>
       </div>
@@ -42,9 +43,3 @@
     </div>
   </div>
 </div>
-<%#
-<div class="cards-container">
-  <div class="cards">
-  </div>
-  </div>
-<div></div> %>
