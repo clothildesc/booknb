@@ -42,7 +42,8 @@ adresses = [
       year: "2022",
       isbn_number: "059342218X",
       editor: "G.P. Putnam's Sons",
-      user: user_1
+      user: user_1,
+      status: "available"
     )
 
     book_1.photo.attach(
@@ -60,7 +61,8 @@ adresses = [
       year: "2016",
       isbn_number: "1410496201",
       editor: "Thorndike Press Large Print",
-      user: user_2
+      user: user_2,
+      status: "available"
     )
 
     book_2.photo.attach(
@@ -78,7 +80,8 @@ adresses = [
       year: "2022",
       isbn_number: "0593329929",
       editor: "TarcherPerigee",
-      user: user_3
+      user: user_3,
+      status: "available"
     )
 
     book_3.photo.attach(
@@ -96,7 +99,8 @@ adresses = [
       year: "2009",
       isbn_number: "0955199867",
       editor: "Alanna Books",
-      user: user_4
+      user: user_4,
+      status: "available"
     )
 
     book_4.photo.attach(
@@ -114,7 +118,8 @@ adresses = [
       year: "2006",
       isbn_number: "9780786838653",
       editor: "Disney Hyperion",
-      user: user_5
+      user: user_5,
+      status: "available"
     )
 
     book_5.photo.attach(
@@ -132,7 +137,8 @@ adresses = [
       year: "2023",
       isbn_number: "9788374992",
       editor: "Love Books",
-      user: user_6
+      user: user_6,
+      status: "available"
     )
 
     book_6.photo.attach(
@@ -151,7 +157,8 @@ adresses = [
       year: "2014",
       isbn_number: "9781402292538",
       editor: "Sourcebooks Fire",
-      user: user_7
+      user: user_7,
+      status: "available"
     )
 
     book_7.photo.attach(
