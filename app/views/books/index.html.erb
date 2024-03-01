@@ -7,7 +7,7 @@
           <%= text_field_tag :query,
                   params[:query],
                   class: "form-control", id: "input_field",
-                  placeholder: "What do you want to read next?"
+                  placeholder: "What's your next read ?"
             %>
           <button type="submit" class="btn btn-success" id="btn_search">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -23,7 +23,7 @@
           <% @books.each do |book| %>
             <div class="book-card ms-2 mb-3">
               <%= link_to book_path(book), style:"text-decoration: none; color: black" do %>
-                <div class="book-card-inner">
+                <div class="book-card-inner shadow rounded">
                   <div class="book-card-front">
                     <%= image_tag (book.photo.attached? ? cl_image_path(book.photo.key) : 'book_background.png'), class: "rounded", style: "width: 100%; height: 300px; object-fit: cover;" %>
                     <h5 class="card-title mx-3 mt-3"><%= book.title %></h5>
