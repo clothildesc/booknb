@@ -39,3 +39,20 @@ $secondary-text-color: #666;
     height: auto;
   }
 }
+
+.dashboard {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 50px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.tabContent {
+  margin-top: 20px;
+}

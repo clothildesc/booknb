@@ -1,7 +1,11 @@
 <div class="container my-5">
 
-  <!-- My Books Section -->
-  <div class="mb-5 mt-3">
+<div class="dashboard" data-controller="menu-dashboard">
+  <button data-action="click->menu-dashboard#showBooks">My Books</button>
+  <button data-action="click->menu-dashboard#showBookings">My Bookings</button>
+  <!-- Livres ajoutés -->
+  <!-- Vous pouvez remplir cette section avec les livres ajoutés -->
+  <div class="mb-5 mt-3" data-menu-dashboard-target="mybooks">
     <h2 class="my-4">My Books</h2>
     <div class="row">
       <% @books.each do |book| %>
@@ -38,8 +42,9 @@
     </div>
   </div>
 
-  <!-- Borrowed Books Section -->
-  <div class="mb-5">
+  <!-- Réservations -->
+  <!-- Vous pouvez remplir cette section avec les réservations -->
+  <div class="mb-5" data-menu-dashboard-target="bookings">
     <h2 class="my-4">My Borrowed Books</h2>
     <div class="row">
       <% @bookings.each do |booking| %>
@@ -57,5 +62,7 @@
       <% end %>
     </div>
   </div>
+  </div>
 
-</div>
+    <script src="script.js" data-turbo-eval="false"></script>
+</body>
