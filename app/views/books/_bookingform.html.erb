@@ -1,11 +1,8 @@
 
 <div class="bg-white rounded-custom p-3 mt-3 shadow w-50">
-<%= simple_form_for [book, booking], html: { data: { controller: "datepicker" } } do |f| %>
-<%= f.input :start_date, as: :hidden, input_html: { data: { datepicker_target: "startDateInput" } } %>
-<%= f.input :end_date, as: :hidden, input_html: { data: { datepicker_target: "endDateInput" } }%>
-<%= f.input :range, label: "Select a range of dates" do %>
-  <%= text_field_tag :range, nil, data: { datepicker_target: :range }, class: "form-control" %>
-<% end %>
-<%= f.button :submit, 'Request to borrow', class: 'btn btn-success' %>
-<% end %>
+  <%= simple_form_for [book, booking], html: { data: { controller: "datepicker" } } do |f| %>
+    <%= f.input :start_date, as: :string, input_html: { data: { datepicker_target: "startDateInput" } } %>
+    <%= f.input :end_date, as: :string, input_html: { data: { datepicker_target: "endDateInput" } }%>
+    <%= f.button :submit, 'Request to borrow', class: 'btn btn-success' %>
+  <% end %>
 </div>
