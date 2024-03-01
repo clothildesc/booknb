@@ -11,35 +11,40 @@
       <div class="cards-container">
         <% @books.each do |book| %>
           <div class="book-card ms-2 mb-3">
-            <%= link_to book_path(book), style:"text-decoration: none; color: black" do %>
-              <div class="book-card-front shadow rounded">
-                <%= image_tag(book.photo.attached? ? cl_image_path(book.photo.key) : 'book_background.png', class: "card-img-top card_img rounded") %>
-                <div class="flex-grow-1 d-flex flex-column justify-content-between">
-                  <div class="m-2">
-                    <div class="d-flex justify-content-between">
-                      <h5 class="card-title"><%= book.title %></h5>
-                      <div>
-                        <%= link_to edit_book_path(book), style: "text-decoration: none; color: #000000;" do %>
-                          <%= content_tag(:i, "", class: "fa-solid fa-pen", style: "color: #000000;") %>
-                        <% end %>
-                        <%= link_to book_path(book), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, style: "text-decoration: none; color: #000000;" do %>
-                          <%= content_tag(:i, "", class: "fa-solid fa-trash", style: "color: #000000;") %>
-                        <% end %>
-                      </div>
-                    </div>
-                    <p class="card-text my-2">
-                      <% if book.status == "booked" %>
-                        <span class="badge rounded-pill bg-danger fw-normal">Booked</span>
-                      <% else %>
-                        <span class="badge rounded-pill bg-success fw-normal">Available</span>
-                      <% end %>
-                    </p>
-                  </div>
-                </div>
+            <div class="book-card-front shadow rounded">
+              <%= link_to book_path(book),
+                          class: "d-block h-75",
+                          style:"
+                            text-decoration: none;
+                            color: black;
+                          " do %>
+                <%= image_tag(book.photo.attached? ? cl_image_path(book.photo.key) : 'book_background.png', class: "card-img-top card_img rounded h-100 object-cover") %>
               <% end %>
+              <div class="flex-grow-1 d-flex flex-column justify-content-between">
+                <div class="m-2">
+                  <div class="d-flex justify-content-between">
+                    <h5 class="card-title"><%= book.title %></h5>
+                    <div>
+                      <%= link_to edit_book_path(book), style: "text-decoration: none; color: #000000;" do %>
+                        <%= content_tag(:i, "", class: "fa-solid fa-pen", style: "color: #000000;") %>
+                      <% end %>
+                      <%= link_to book_path(book), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, style: "text-decoration: none; color: #000000;" do %>
+                        <%= content_tag(:i, "", class: "fa-solid fa-trash", style: "color: #000000;") %>
+                      <% end %>
+                    </div>
+                  </div>
+                  <p class="card-text my-2">
+                    <% if book.status == "booked" %>
+                      <span class="badge rounded-pill bg-danger fw-normal">Booked</span>
+                    <% else %>
+                      <span class="badge rounded-pill bg-success fw-normal">Available</span>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -51,20 +56,19 @@
       <div class="cards-container">
         <% @bookings.each do |booking| %>
           <div class="ms-2 mb-3 book-card">
-            <div class="book-card-front-dashboard shadow">
-              <%= link_to book_path(booking.book), style:"text-decoration: none; color: black" do %>
-                <%= image_tag(booking.book.photo.attached? ? cl_image_path(booking.book.photo.key) : 'book_background.png', class: "card-img-top card_img rounded") %>
-                <div class="flex-grow-1 d-flex flex-column justify-content-between">
-                  <div class="m-2">
-                    <h5 class="card-title"><%= booking.book.title %></h5>
-                  </div>
+            <div class="book-card-front-dashboard shadow h-100">
+              <%= link_to book_path(booking.book), style:"text-decoration: none; color: black", class: "d-block h-75" do %>
+                <%= image_tag(booking.book.photo.attached? ? cl_image_path(booking.book.photo.key) : 'book_background.png', class: "card-img-top card_img rounded h-100 object-cover") %>
+              <% end %>
+              <div class="flex-grow-1 d-flex flex-column justify-content-between">
+                <div class="m-2">
+                  <h5 class="card-title"><%= booking.book.title %></h5>
                 </div>
               </div>
             </div>
-          <% end %>
+          </div>
         <% end %>
       </div>
     </div>
   </div>
 </body>
-
