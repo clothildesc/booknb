@@ -1,43 +1,10 @@
-$card-dashboard-bg: #fff;
-$card-dashboard-border: #ddd;
-$text-color: #333;
-$secondary-text-color: #666;
-
-.card-dashboard {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-
-  &-img-top {
-    height: 200px;
-    object-fit: cover;
-  }
-
-  &-body {
-    background-color: $card-dashboard-bg;
-    border-top: 1px solid $card-dashboard-border;
-
-    &-title {
-      color: $text-color;
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    &-text {
-      color: $secondary-text-color;
-      font-size: 0.875rem;
-    }
-  }
-}
-
-@media (max-width: 767px) {
-  .card-dashboard-img-top {
-    height: auto;
-  }
+.book-card-front-dashboard{
+  position: absolute;
+  width: 100%;
+  backface-visibility: hidden;
+  background-color: white;
+  border-radius: 8px;
+  height:343px;
 }
 
 .dashboard {

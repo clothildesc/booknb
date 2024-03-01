@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @books = Book.all
+    @books = Book.where(status: "available")
     if user_signed_in?
       @users = User.near(current_user.address, 3)
     else
