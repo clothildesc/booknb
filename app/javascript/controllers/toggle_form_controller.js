@@ -9,6 +9,7 @@ export default class extends Controller {
   }
 
   fire(event) {
+    event.preventDefault()
     this.formTarget.classList.toggle("d-none");
     this.buttonTarget.classList.add("d-none");
   }
