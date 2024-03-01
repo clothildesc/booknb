@@ -35,12 +35,17 @@ class BooksController < ApplicationController
     @booking = Booking.new
     @book = Book.find(params[:id])
     @user = @book.user
-    @marker =
+    if @user.geocoded?
+    @markers =  [
       {
         lat: @user.latitude,
-        lng: @user.longitude
+        lng: @user.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {user: @user}),
+        marker_html: render_to_string(partial: "marker")
       }
+    ]
   end
+end
 
   def new
     @book = Book.new
