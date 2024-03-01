@@ -1,79 +1,84 @@
-<div class="dashboard" data-controller="menu-dashboard">
-  <div class="div-h1 d-flex ">
-    <h1>Hello, Martin!</h1>
-  </div>
-  <div class=" div-button d-flex align-items-start">
-    <button class="button-dashboard" data-action="click->menu-dashboard#showBooks">My Books</button>
-    <button class="button-dashboard" data-action="click->menu-dashboard#showBookings">My Bookings</button>
-  </div>
-  <!-- Livres ajoutés -->
-  <!-- Vous pouvez remplir cette section avec les livres ajoutés -->
-<div>
-  <div class="mb-5 mt-3" data-menu-dashboard-target="mybooks">
-    <div class="row">
-      <div class="cards-container">
-        <% @books.each do |book| %>
-          <div class="book-card ms-2 mb-3">
-            <div class="book-card-front shadow rounded">
-              <%= link_to book_path(book),
-                          class: "d-block h-75",
-                          style:"
-                            text-decoration: none;
-                            color: black;
-                          " do %>
-                <%= image_tag(book.photo.attached? ? cl_image_path(book.photo.key) : 'book_background.png', class: "card-img-top card_img rounded h-100 object-cover") %>
-              <% end %>
-              <div class="flex-grow-1 d-flex flex-column justify-content-between">
-                <div class="m-2">
-                  <div class="d-flex justify-content-between">
-                    <h5 class="card-title"><%= book.title %></h5>
-                    <div>
-                      <%= link_to edit_book_path(book), style: "text-decoration: none; color: #000000;" do %>
-                        <%= content_tag(:i, "", class: "fa-solid fa-pen", style: "color: #000000;") %>
-                      <% end %>
-                      <%= link_to book_path(book), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, style: "text-decoration: none; color: #000000;" do %>
-                        <%= content_tag(:i, "", class: "fa-solid fa-trash", style: "color: #000000;") %>
-                      <% end %>
+<div class="container my-5 col-10">
+
+  <div class="dashboard" data-controller="menu-dashboard">
+    <div class="div-h1 d-flex">
+      <h1>Hello, Martin!</h1>
+    </div>
+    <div class=" div-button d-flex align-items-start">
+      <button class="button-dashboard" data-action="click->menu-dashboard#showBooks"
+              data-menu-dashboard-target="myBooksBtn">My Books</button>
+      <button class="button-dashboard" data-action="click->menu-dashboard#showBookings"
+              data-menu-dashboard-target="bookingsBtn">My Bookings</button>
+    </div>
+    <!-- Livres ajoutés -->
+    <!-- Vous pouvez remplir cette section avec les livres ajoutés -->
+    <!-- Livres ajoutés -->
+    <!-- Vous pouvez remplir cette section avec les livres ajoutés -->
+    <div class="mb-5 mt-3" data-menu-dashboard-target="mybooks">
+      <%# <h2 class="my-4 text-start">My Books</h2> %>
+      <div class="row">
+        <div class="cards-container">
+          <% @books.each do |book| %>
+            <div class="book-card ms-2 mb-3">
+              <div class="book-card-front shadow rounded">
+                <%= link_to book_path(book),
+                            class: "d-block h-75",
+                            style:"
+                              text-decoration: none;
+                              color: black;
+                            " do %>
+                  <%= image_tag(book.photo.attached? ? cl_image_path(book.photo.key) : 'book_background.png', class: "card-img-top card_img rounded h-100 object-cover") %>
+                <% end %>
+                <div class="flex-grow-1 d-flex flex-column justify-content-between">
+                  <div class="m-2">
+                    <div class="d-flex justify-content-between">
+                      <h5 class="card-title"><%= book.title %></h5>
+                      <div>
+                        <%= link_to edit_book_path(book), style: "text-decoration: none; color: #000000;" do %>
+                          <%= content_tag(:i, "", class: "fa-solid fa-pen", style: "color: #000000;") %>
+                        <% end %>
+                        <%= link_to book_path(book), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, style: "text-decoration: none; color: #000000;" do %>
+                          <%= content_tag(:i, "", class: "fa-solid fa-trash", style: "color: #000000;") %>
+                        <% end %>
+                      </div>
                     </div>
+                    <p class="card-text my-2 text-start">
+                      <% if book.status == "booked" %>
+                        <span class="badge rounded-pill bg-danger fw-normal">Booked</span>
+                      <% else %>
+                        <span class="badge rounded-pill bg-success fw-normal">Available</span>
+                      <% end %>
+                    </p>
                   </div>
-                  <p class="card-text my-2">
-                    <% if book.status == "booked" %>
-                      <span class="badge rounded-pill bg-danger fw-normal">Booked</span>
-                    <% else %>
-                      <span class="badge rounded-pill bg-success fw-normal">Available</span>
-                    <% end %>
-                  </p>
                 </div>
               </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Réservations -->
+    <div class="mt-3 mb-5" data-menu-dashboard-target="bookings">
+      <%# <h2 class="my-4 text-start">My Borrowed Books</h2> %>
+      <div class="row">
+        <div class="cards-container">
+          <% @bookings.each do |booking| %>
+            <div class="ms-2 mb-3 book-card">
+              <div class="book-card-front-dashboard shadow h-100">
+                <%= link_to book_path(booking.book), style:"text-decoration: none; color: black", class: "d-block h-75" do %>
+                  <%= image_tag(booking.book.photo.attached? ? cl_image_path(booking.book.photo.key) : 'book_background.png', class: "card-img-top card_img rounded h-100 object-cover") %>
+                <% end %>
+                <div class="flex-grow-1 d-flex flex-column justify-content-between">
+                  <div class="m-2">
+                    <h5 class="card-title"><%= booking.book.title %></h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-
-  <!-- Réservations -->
-  <div class="mb-5" data-menu-dashboard-target="bookings">
-    <div class="row">
-      <div class="cards-container">
-        <% @bookings.each do |booking| %>
-          <div class="ms-2 mb-3 book-card">
-            <div class="book-card-front-dashboard shadow h-100">
-              <%= link_to book_path(booking.book), style:"text-decoration: none; color: black", class: "d-block h-75" do %>
-                <%= image_tag(booking.book.photo.attached? ? cl_image_path(booking.book.photo.key) : 'book_background.png', class: "card-img-top card_img rounded h-100 object-cover") %>
-              <% end %>
-              <div class="flex-grow-1 d-flex flex-column justify-content-between">
-                <div class="m-2">
-                  <h5 class="card-title"><%= booking.book.title %></h5>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-
