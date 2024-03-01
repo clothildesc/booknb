@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "books#index"
 
   resources :books do
-    resources :bookings, only: %i[new create]
+    resources :bookings, only: [:create]
   end
 
   resources :bookings, only: [:destroy]

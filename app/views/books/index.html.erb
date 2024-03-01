@@ -1,56 +1,53 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.shutterstock.com/image-photo/bokeh-landscape-closeup-left-hand-260nw-2394578275.jpg); backdrop-filter: blur(5px);">
   <div class="container">
-    <h1><strong>Find books and borrow from neighbors</strong></h1>
-      <div class="row justify-content-center">
-        <div class="col-sm-4 my-3">
-          <%= form_with url: books_path, method: :get, class: "d-flex"  do %>
-            <%= text_field_tag :query,
+    <h1><strong>Find and borrow books from neighbors</strong></h1>
+    <div class="row justify-content-center">
+      <div class="col-sm-4 my-3">
+        <%= form_with url: books_path, method: :get, class: "d-flex"  do %>
+          <%= text_field_tag :query,
                   params[:query],
                   class: "form-control", id: "input_field",
-                  placeholder: "Type a keyword"
+                  placeholder: "What's your next read ?"
             %>
-            <button type="submit" class="btn btn-success" id="btn_search">
-              <i class="fa-solid fa-magnifying-glass"></i>
+          <button type="submit" class="btn btn-success m-0" id="btn_search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
           <% end %>
         </div>
       </div>
-  </div>
-</div>
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-8 ps-0">
-      <div class="cards-container">
-        <% @books.each do |book| %>
-          <div class="book-card ms-2 mb-3">
-          <%= link_to book_path(book), style:"text-decoration: none; color: black" do %>
-            <div class="book-card-inner">
-              <div class="book-card-front">
-                <%= image_tag (book.photo.attached? ? cl_image_path(book.photo.key) : 'book_background.png'), class: "rounded", style: "width: 100%; height: 300px; object-fit: cover;" %>
-                <h5 class="card-title ms-3 mt-3"><%= book.title %></h5>
-                <p class="card-text ms-3 mt-1">By <%= book.author %></p>
-              </div>
-
-              <div class="book-card-back">
-                <div class="text-center pt-4 ps-3 pe-3 pb-4">
-                <p><%= book.summary %></p>
-                </div>
-              </div>
-            </div>
-          <%end %>
-          </div>
-        <% end %>
-      </div>
-
-
     </div>
-    <div class="col-4 mt-3 pe-0">
-      <div class="sticky-top">
-        <div style="width: 100%; height: 600px; border-radius: 8px;"
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-8 ps-0">
+        <div class="cards-container">
+          <% @books.each do |book| %>
+            <div class="book-card ms-2 mb-3">
+              <%= link_to book_path(book), style:"text-decoration: none; color: black" do %>
+                <div class="book-card-inner shadow rounded">
+                  <div class="book-card-front">
+                    <%= image_tag (book.photo.attached? ? cl_image_path(book.photo.key) : 'book_background.png'), class: "rounded", style: "width: 100%; height: 300px; object-fit: cover;" %>
+                    <h5 class="card-title mx-3 mt-3"><%= book.title %></h5>
+                    <p class="card-text mx-3 mt-1">By <%= book.author %></p>
+                  </div>
+                  <div class="book-card-back">
+                    <div class="text-center pt-4 ps-3 pe-3 pb-4">
+                      <p><%= book.summary %></p>
+                    </div>
+                  </div>
+                </div>
+              <%end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-4 mt-3 pe-0">
+        <div class="sticky-top">
+          <div style="width: 100%; height: 600px; border-radius: 8px;"
               data-controller="map"
               data-map-markers-value="<%= @markers.to_json %>"
               data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>

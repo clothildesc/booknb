@@ -1,17 +1,80 @@
 <div class="container my-5">
-  <!-- Buttons -->
-  <div class="mt-5 mb-4">
-    <%= link_to "← Back to books", books_path, style:"text-decoration: none; color: black" %>
+  <div class="row">
+    <div class="col-8 row">
+      <div class="col-12 mb-3">
+        <%= link_to "← Back to books", books_path, style:"text-decoration: none; color: black" %>
+      </div>
+      <div class="col-5">
+        <%= image_tag @book.photo.attached? ? cl_image_path(@book.photo.key) : 'book_background.png',
+                      class: "rounded-custom shadow" %>
+      </div>
+      <div class="col-7" data-controller="toggle-form">
+        <h3 class="card-title"><%= @book.title %></h3>
+        <div class="d-fle">
+          <p class="card-text me-4">By <%= @book.author %></p>
+          <p>
+            <% if @book.status == "booked" %>
+              <span class="badge rounded-pill bg-danger fw-normal">Booked</span>
+            <% else %>
+              <span class="badge rounded-pill bg-success fw-normal">Available</span>
+            <% end %>
+          </p>
+          <div data-toggle-form-target="form" class="d-none mb-4">
+            <%= render "bookingform", book: @book, booking: @booking %>
+          </div>
+          <!-- Booking Buttons -->
+          <div>
+            <% if user_signed_in? && @book.user_id != current_user.id %>
+              <% booking = @book.bookings.where(user: current_user) %>
+              <% if booking.any? %>
+                <%= link_to "Cancel the booking", booking_path(booking.first), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger text-light mt-3'  %>
+              <% elsif @book.status != "booked" %>
+                <%= link_to "Send a booking request", "#", class: 'btn btn-success mt-3', data: { toggle_form_target: "button", action: "click->toggle-form#fire" } %>
+              <% end %>
+            <% elsif !user_signed_in? && @book.status != "booked" %>
+              <%= link_to "Send a booking request", "#", class: 'btn btn-success mt-3', data: { toggle_form_target: "button", action: "click->toggle-form#fire" } %>
+            <% end %>
+          </div>
+          <ul class="list-group list-group-flush bg-white w-fit-content">
+            <li class="list-group-item list-group-item-sucess"><strong>Editor:</strong> <%= @book.editor %></li>
+            <li class="list-group-item"><strong>Publication year:</strong> <%= @book.year %></li>
+            <li class="list-group-item"><strong>ISBN:</strong> <%= @book.isbn_number %></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-12 mt-3">
+        <h3>Summary</h3>
+        <p class="book-summary col-10"><%= @book.summary%></p>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="sticky-top">
+        <div style="width: 100%; height: 600px; border-radius: 8px;"
+                data-controller="map"
+                data-map-markers-value="<%= @markers.to_json %>"
+                data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- Book Card Section -->
+
+</div>
+
+<% if false %>
+
+
+<div class="container my-5 d-flex col-10">
   <div class="card mb-3 border-0">
-    <div class="row g-0">
-      <div class="col-md-4">
+    <div class="row g-0 d-flex">
+      <div class="mt-0 mb-4">
+        <%= link_to "← Back to books", books_path, style:"text-decoration: none; color: black" %>
+      </div>
+      <div class="col-md-4 shadow rounded" id="show-image-container">
         <!-- Image -->
-        <%= image_tag(@book.photo.attached? ? cl_image_path(@book.photo.key) : 'book_background.png', class: "fixed-size-image rounded-custom") %>
+        <%= image_tag(@book.photo.attached? ? cl_image_path(@book.photo.key) : 'book_background.png', class: "rounded-custom shadow") %>
       </div>
       <div class="col-md-8">
-        <div class="card-body">
+        <div class="card-body" style="padding-left: 70px;" data-controller="toggle-form">
           <!-- Book informations Section -->
           <h3 class="card-title"><%= @book.title %></h3>
           <div class="d-flex">
@@ -24,22 +87,27 @@
               <% end %>
             </p>
           </div>
+          <!-- Form -->
+          <div data-toggle-form-target="form" class="d-none">
+            <%= render "bookingform", book: @book, booking: @booking %>
+          </div>
+          <!-- Booking Buttons -->
           <div>
             <% if user_signed_in? && @book.user_id != current_user.id %>
               <% booking = @book.bookings.where(user: current_user) %>
               <% if booking.any? %>
                 <%= link_to "Cancel the booking", booking_path(booking.first), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger text-light mt-3'  %>
               <% elsif @book.status != "booked" %>
-                <%= link_to "Send a booking request", new_book_booking_path(@book), class: 'btn btn-success mt-3' %>
+                <%= link_to "Send a booking request", "#", class: 'btn btn-success mt-3', data: { toggle_form_target: "button", action: "click->toggle-form#fire" } %>
               <% end %>
             <% elsif !user_signed_in? && @book.status != "booked" %>
-              <%= link_to "Send a booking request", new_user_session_path, class: 'btn btn-success mt-3' %>
+              <%= link_to "Send a booking request", "#", class: 'btn btn-success mt-3', data: { toggle_form_target: "button", action: "click->toggle-form#fire" } %>
             <% end %>
           </div>
           <!-- Book Details Section -->
-          <div class="row my-5">
+          <div class="row my-4">
             <div class="col">
-              <ul class="list-group list-group-flush bg-white">
+              <ul class="list-group list-group-flush bg-white" style="width: 229px">
                 <li class="list-group-item list-group-item-sucess"><strong>Editor:</strong> <%= @book.editor %></li>
                 <li class="list-group-item"><strong>Publication year:</strong> <%= @book.year %></li>
                 <li class="list-group-item"><strong>ISBN:</strong> <%= @book.isbn_number %></li>
@@ -48,13 +116,24 @@
           </div>
         </div>
       </div>
-      <!-- Book Summary Section -->
-      <div class="row my-5">
-        <div class="col">
-          <h3>Summary</h3>
-          <p class="book-summary"><%= @book.summary%></p>
-        </div>
+    </div>
+    <!-- Book Summary Section -->
+    <div class="row my-4">
+      <div class="col">
+        <h3>Summary</h3>
+        <p class="book-summary col-10"><%= @book.summary%></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-4 mt-0 pe-0">
+    <div class="sticky-top">
+      <div style="width: 100%; height: 600px; border-radius: 8px;"
+              data-controller="map"
+              data-map-markers-value="<%= @markers.to_json %>"
+              data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
   </div>
 </div>
+</div>
+<% end %>

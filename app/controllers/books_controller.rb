@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @books = Book.all
+    @books = Book.where(status: "available")
     if user_signed_in?
       @users = User.near(current_user.address, 15)
     else
@@ -32,6 +32,14 @@ class BooksController < ApplicationController
 
 
   def show
+    @booking = Booking.new
+    @book = Book.find(params[:id])
+    @user = @book.user
+    @marker =
+      {
+        lat: @user.latitude,
+        lng: @user.longitude
+      }
   end
 
   def new

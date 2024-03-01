@@ -1,14 +1,25 @@
-<div class="container my-5">
+<div class="container my-5 col-10">
 
-  <!-- My Books Section -->
-  <div class="mb-5 mt-3">
+<div class="dashboard" data-controller="menu-dashboard">
+  <button data-action="click->menu-dashboard#showBooks">My Books</button>
+  <button data-action="click->menu-dashboard#showBookings">My Bookings</button>
+  <!-- Livres ajoutés -->
+  <!-- Vous pouvez remplir cette section avec les livres ajoutés -->
+  <div class="mb-5 mt-3" data-menu-dashboard-target="mybooks">
     <h2 class="my-4">My Books</h2>
     <div class="row">
-      <% @books.each do |book| %>
-        <div class="col-3 mb-4">
-          <%= link_to book_path(book), style:"text-decoration: none; color: black" do %>
-            <div class="d-flex flex-column h-100">
-              <%= image_tag(book.photo.attached? ? cl_image_path(book.photo.key) : 'book_background.png', class: "card-img-top card_img") %>
+      <div class="cards-container">
+        <% @books.each do |book| %>
+          <div class="book-card ms-2 mb-3">
+            <div class="book-card-front shadow rounded">
+              <%= link_to book_path(book),
+                          class: "d-block h-75",
+                          style:"
+                            text-decoration: none;
+                            color: black;
+                          " do %>
+                <%= image_tag(book.photo.attached? ? cl_image_path(book.photo.key) : 'book_background.png', class: "card-img-top card_img rounded h-100 object-cover") %>
+              <% end %>
               <div class="flex-grow-1 d-flex flex-column justify-content-between">
                 <div class="m-2">
                   <div class="d-flex justify-content-between">
@@ -32,30 +43,32 @@
                 </div>
               </div>
             </div>
-          <% end %>
-        </div>
-      <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 
-  <!-- Borrowed Books Section -->
-  <div class="mb-5">
+  <!-- Réservations -->
+  <div class="mb-5" data-menu-dashboard-target="bookings">
     <h2 class="my-4">My Borrowed Books</h2>
     <div class="row">
-      <% @bookings.each do |booking| %>
-        <div class="col-3 mb-4">
-          <div class="d-flex flex-column h-100">
-            <%= image_tag(booking.book.photo.attached? ? cl_image_path(booking.book.photo.key) : 'book_background.png', class: "card-img-top card_img") %>
-            <div class="flex-grow-1 d-flex flex-column justify-content-between">
-              <div class="m-2">
-                <h5 class="card-title"><%= booking.book.title %></h5>
+      <div class="cards-container">
+        <% @bookings.each do |booking| %>
+          <div class="ms-2 mb-3 book-card">
+            <div class="book-card-front-dashboard shadow h-100">
+              <%= link_to book_path(booking.book), style:"text-decoration: none; color: black", class: "d-block h-75" do %>
+                <%= image_tag(booking.book.photo.attached? ? cl_image_path(booking.book.photo.key) : 'book_background.png', class: "card-img-top card_img rounded h-100 object-cover") %>
+              <% end %>
+              <div class="flex-grow-1 d-flex flex-column justify-content-between">
+                <div class="m-2">
+                  <h5 class="card-title"><%= booking.book.title %></h5>
+                </div>
               </div>
-                <%= link_to 'Update booking', book_path(booking.book), class: "btn btn-success" %>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
-
-</div>
+</body>
