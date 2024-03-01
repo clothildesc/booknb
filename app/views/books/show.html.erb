@@ -1,4 +1,4 @@
-<div class="container my-5">
+<div class="container my-5 col-7">
   <!-- Buttons -->
   <div class="mt-5 mb-4">
     <%= link_to "← Back to books", books_path, style:"text-decoration: none; color: black" %>
@@ -6,9 +6,9 @@
   <!-- Book Card Section -->
   <div class="card mb-3 border-0">
     <div class="row g-0">
-      <div class="col-md-4">
+      <div class="col-md-4" id="show-image-container">
         <!-- Image -->
-        <%= image_tag(@book.photo.attached? ? cl_image_path(@book.photo.key) : 'book_background.png', class: "fixed-size-image rounded-custom") %>
+        <%= image_tag(@book.photo.attached? ? cl_image_path(@book.photo.key) : 'book_background.png', class: "rounded-custom") %>
       </div>
       <div class="col-md-8">
         <div class="card-body">
@@ -39,7 +39,7 @@
           <!-- Book Details Section -->
           <div class="row my-5">
             <div class="col">
-              <ul class="list-group list-group-flush bg-white">
+              <ul class="list-group list-group-flush bg-white" style="width: 229px";>
                 <li class="list-group-item list-group-item-sucess"><strong>Editor:</strong> <%= @book.editor %></li>
                 <li class="list-group-item"><strong>Publication year:</strong> <%= @book.year %></li>
                 <li class="list-group-item"><strong>ISBN:</strong> <%= @book.isbn_number %></li>
@@ -49,7 +49,7 @@
         </div>
       </div>
       <!-- Book Summary Section -->
-      <div class="row my-5">
+      <div class="row my-4">
         <div class="col">
           <h3>Summary</h3>
           <p class="book-summary"><%= @book.summary%></p>

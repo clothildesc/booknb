@@ -32,6 +32,8 @@ adresses = [
   user_5 = User.create!(email: "tutu@gmail.com", password: "123456", address: adresses.sample)
   user_6 = User.create!(email: "tete@gmail.com", password: "123456", address: adresses.sample)
   user_7 = User.create!(email: "tititi@gmail.com", password: "123456", address: adresses.sample)
+  user_8 = User.create!(email: "tatata@gmail.com", password: "123456", address: adresses.sample)
+  user_9 = User.create!(email: "tututu@gmail.com", password: "123456", address: adresses.sample)
 
   puts "Creating seeds..."
 
@@ -72,17 +74,17 @@ adresses = [
     book_2.save!
 
     book_3 = Book.new(
-      title: "In Your Own Backyard",
-      author: "Joan E. Strassmann",
-      summary: "In this inspiring guide to the art of slow birding, Strassmann tells colorful stories of the most common birds to be found in the United States—birds we often see but might not have considered deeply before. For example, northern cardinals thrive in the city, where they are free from predators. White brows on a male white-throated sparrow indicate that he is likely to be a philanderer.",
-      year: "2022",
-      isbn_number: "0593329929",
-      editor: "TarcherPerigee",
+      title: "Fourth Wing",
+      author: "Rebecca Yarros",
+      summary: "Twenty-year-old Violet Sorrengail was supposed to enter the Scribe Quadrant, living a quiet life among books and history. Now, the commanding general—also known as her tough-as-talons mother—has ordered Violet to join the hundreds of candidates striving to become the elite of Navarre: dragon riders.",
+      year: "2023",
+      isbn_number: "1385749208",
+      editor: "Entangled: Red Tower Books",
       user: user_3
     )
 
     book_3.photo.attach(
-      io: File.open('public/images/in_your_own_backyard.jpeg'),
+      io: File.open('public/images/fourth_wing.jpg'),
       filename: 'cover.jpg',
       content_type: 'image/jpeg'
     )
@@ -90,17 +92,17 @@ adresses = [
     book_3.save!
 
     book_4 = Book.new(
-      title: "Little Frog",
-      author: "Jakob Martin Strid",
-      summary: "The adventures of a very naughty frog. When Little Frog drops into the lives of a very normal family chaos ensues. The family want to love him, and he very much wants to be loved. The trouble is, he's from another planet and even though he doesn't mean to be, he's actually very very naughty.",
-      year: "2009",
-      isbn_number: "0955199867",
-      editor: "Alanna Books",
+      title: "The Art Thief",
+      author: "Michael Finnkel",
+      summary: "In this spellbinding portrait of obsession and flawed genius, the best-selling author of The Stranger in the Woods brings us into Breitwieser’s strange world—unlike most thieves, he never stole for money, keeping all his treasures in a single room where he could admire them.",
+      year: "2023",
+      isbn_number: "1382048374",
+      editor: "Knopfs",
       user: user_4
     )
 
     book_4.photo.attach(
-      io: File.open('public/images/little_frog.png'),
+      io: File.open('public/images/the_art_thief.jpg'),
       filename: 'cover.jpg',
       content_type: 'image/png'
     )
@@ -161,5 +163,41 @@ adresses = [
     )
 
     book_7.save!
+
+    book_8 = Book.new(
+      title: "The Berry Pickers",
+      author: "Amanda Peters",
+      summary: "July 1962. A Mi’kmaq family from Nova Scotia arrives in Maine to pick blueberries for the summer. Weeks later, four-year-old Ruthie, the family’s youngest child, vanishes. She is last seen by her six-year-old brother, Joe, sitting on a favorite rock at the edge of a berry field. Joe will remain distraught by his sister’s disappearance for years to come.",
+      year: "2023",
+      isbn_number: "2394809387",
+      editor: "Catapult",
+      user: user_8
+    )
+
+    book_8.photo.attach(
+      io: File.open('public/images/the_berry_pickers.jpeg'),
+      filename: 'cover.jpg',
+      content_type: 'image/png'
+    )
+
+    book_8.save!
+
+    book_9 = Book.new(
+      title: "Wellness",
+      author: "Nathan Hill",
+      summary: "When Jack and Elizabeth meet as college students in the gritty '90s Chicago art scene, the two quickly join forces and hold on tight, each eager to claim a place in the thriving underground scene with an appreciative kindred spirit. Fast-forward twenty years to suburban married life, and alongside the challenges of parenting, they encounter the often",
+      year: "2023",
+      isbn_number: "9837482485",
+      editor: "Knopf",
+      user: user_9
+    )
+
+    book_9.photo.attach(
+      io: File.open('public/images/wellness.jpg'),
+      filename: 'cover.jpg',
+      content_type: 'image/png'
+    )
+
+    book_9.save!
 
 puts "Finished!"
