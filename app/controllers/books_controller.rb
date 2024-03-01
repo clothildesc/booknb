@@ -5,16 +5,9 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     if user_signed_in?
-      @users = User.near(current_user.address, 3)
+      @users = User.near(current_user.address, 15)
     else
       @users = User.all
-    end
-
-    @markers = @users.geocoded.map do |user|
-      {
-        lat: user.latitude,
-        lng: user.longitude
-      }
     end
 
     if params[:query].present?
@@ -23,8 +16,20 @@ class BooksController < ApplicationController
         OR books.author @@ :query
       SQL
       @books = @books.where(sql_subquery, query: params[:query])
+      @users = User.where(id: @books.pluck(:user_id))
+    end
+
+    @markers = @users.geocoded.map do |user|
+      {
+
+        lat: user.latitude,
+        lng: user.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {user: user}),
+        marker_html: render_to_string(partial: "marker")
+      }
     end
   end
+
 
   def show
   end
