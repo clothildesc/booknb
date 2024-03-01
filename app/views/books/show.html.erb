@@ -11,7 +11,7 @@
         <%= image_tag(@book.photo.attached? ? cl_image_path(@book.photo.key) : 'book_background.png', class: "rounded-custom") %>
       </div>
       <div class="col-md-8">
-        <div class="card-body">
+        <div class="card-body" data-controller="toggle-form">
           <!-- Book informations Section -->
           <h3 class="card-title"><%= @book.title %></h3>
           <div class="d-flex">
@@ -24,22 +24,27 @@
               <% end %>
             </p>
           </div>
+          <!-- Form -->
+          <div data-toggle-form-target="form" class="d-none">
+            <%= render "bookingform", book: @book, booking: @booking %>
+          </div>
+          <!-- Booking Buttons -->
           <div>
             <% if user_signed_in? && @book.user_id != current_user.id %>
               <% booking = @book.bookings.where(user: current_user) %>
               <% if booking.any? %>
                 <%= link_to "Cancel the booking", booking_path(booking.first), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger text-light mt-3'  %>
               <% elsif @book.status != "booked" %>
-                <%= link_to "Send a booking request", new_book_booking_path(@book), class: 'btn btn-success mt-3' %>
+                <%= link_to "Send a booking request", "#", class: 'btn btn-success mt-3', data: { toggle_form_target: "button", action: "click->toggle-form#fire" } %>
               <% end %>
             <% elsif !user_signed_in? && @book.status != "booked" %>
-              <%= link_to "Send a booking request", new_user_session_path, class: 'btn btn-success mt-3' %>
+              <%= link_to "Send a booking request", "#", class: 'btn btn-success mt-3', data: { toggle_form_target: "button", action: "click->toggle-form#fire" } %>
             <% end %>
           </div>
           <!-- Book Details Section -->
-          <div class="row my-5">
+          <div class="row my-4">
             <div class="col">
-              <ul class="list-group list-group-flush bg-white" style="width: 229px";>
+              <ul class="list-group list-group-flush bg-white" style="width: 229px">
                 <li class="list-group-item list-group-item-sucess"><strong>Editor:</strong> <%= @book.editor %></li>
                 <li class="list-group-item"><strong>Publication year:</strong> <%= @book.year %></li>
                 <li class="list-group-item"><strong>ISBN:</strong> <%= @book.isbn_number %></li>
