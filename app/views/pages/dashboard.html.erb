@@ -1,12 +1,15 @@
-<div class="container my-5 col-10">
-
 <div class="dashboard" data-controller="menu-dashboard">
-  <button data-action="click->menu-dashboard#showBooks">My Books</button>
-  <button data-action="click->menu-dashboard#showBookings">My Bookings</button>
+  <div class="div-h1 d-flex ">
+    <h1>Hello, Martin!</h1>
+  </div>
+  <div class=" div-button d-flex align-items-start">
+    <button class="button-dashboard" data-action="click->menu-dashboard#showBooks">My Books</button>
+    <button class="button-dashboard" data-action="click->menu-dashboard#showBookings">My Bookings</button>
+  </div>
   <!-- Livres ajoutés -->
   <!-- Vous pouvez remplir cette section avec les livres ajoutés -->
+<div>
   <div class="mb-5 mt-3" data-menu-dashboard-target="mybooks">
-    <h2 class="my-4">My Books</h2>
     <div class="row">
       <div class="cards-container">
         <% @books.each do |book| %>
@@ -48,10 +51,11 @@
       </div>
     </div>
   </div>
+</div>
+
 
   <!-- Réservations -->
   <div class="mb-5" data-menu-dashboard-target="bookings">
-    <h2 class="my-4">My Borrowed Books</h2>
     <div class="row">
       <div class="cards-container">
         <% @bookings.each do |booking| %>
@@ -71,4 +75,5 @@
       </div>
     </div>
   </div>
-</body>
+</div>
+

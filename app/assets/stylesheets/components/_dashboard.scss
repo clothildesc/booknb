@@ -1,29 +1,39 @@
-.book-card-front-dashboard{
+.book-card-front-dashboard {
   position: absolute;
   width: 100%;
   backface-visibility: hidden;
   background-color: white;
   border-radius: 8px;
-  height:360px;
+  height: 343px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
+.div-h1{
+  margin-left: 63px;
+  margin-bottom: 10px;
 
+}
 .dashboard {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
   margin-top: 50px;
 }
 
-button {
+.button-dashboard {
   padding: 10px 20px;
   margin: 10px;
-  cursor: pointer;
+}
+.button-dashboard:hover {
+  color: black !important;
 }
 
 .tabContent {
   margin-top: 20px;
 }
 
+.div-button{
+  margin-left: 50px;
+  
 .object-cover {
   object-fit: cover;
 }
