@@ -25,15 +25,15 @@ adresses = [
   ]
 
 
-  user_1 = User.create!(email: "toto@gmail.com", password: "123456", address: adresses.sample)
-  user_2 = User.create!(email: "titi@gmail.com", password: "123456", address: adresses.sample)
-  user_3 = User.create!(email: "tonton@gmail.com", password: "123456", address: adresses.sample)
-  user_4 = User.create!(email: "tata@gmail.com", password: "123456", address: adresses.sample)
-  user_5 = User.create!(email: "tutu@gmail.com", password: "123456", address: adresses.sample)
-  user_6 = User.create!(email: "tete@gmail.com", password: "123456", address: adresses.sample)
-  user_7 = User.create!(email: "tititi@gmail.com", password: "123456", address: adresses.sample)
-  user_8 = User.create!(email: "tatata@gmail.com", password: "123456", address: adresses.sample)
-  user_9 = User.create!(email: "tututu@gmail.com", password: "123456", address: adresses.sample)
+  user_1 = User.create!(email: "toto@gmail.com", password: "123456", address: "10 Rue des Petits Carreaux, Paris")
+  user_2 = User.create!(email: "titi@gmail.com", password: "123456", address: "15 Rue Montorgueil, Paris")
+  user_3 = User.create!(email: "tonton@gmail.com", password: "123456", address: "20 Rue Tiquetonne, Paris")
+  user_4 = User.create!(email: "tata@gmail.com", password: "123456", address: "25 Rue Étienne Marcel, Paris")
+  user_5 = User.create!(email: "tutu@gmail.com", password: "123456", address: "30 Rue Réaumur, Paris")
+  user_6 = User.create!(email: "tete@gmail.com", password: "123456", address: "35 Rue Greneta, Paris")
+  user_7 = User.create!(email: "tititi@gmail.com", password: "123456", address: "40 Rue Saint-Denis, Paris")
+  user_8 = User.create!(email: "tatata@gmail.com", password: "123456", address: "25 Rue Étienne Marcel, Paris")
+  user_9 = User.create!(email: "tototo@gmail.com", password: "123456", address: "44 Rue Tiquetonne, Paris")
 
   puts "Creating seeds..."
 
