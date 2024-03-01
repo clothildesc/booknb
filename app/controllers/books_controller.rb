@@ -4,6 +4,7 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.where(status: "available")
+    @books = @books.where.not(user_id: current_user.id) if user_signed_in?
     if user_signed_in?
       @users = User.near(current_user.address, 3)
     else
