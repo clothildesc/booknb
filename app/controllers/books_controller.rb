@@ -65,7 +65,7 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    redirect_to books_path
+    redirect_to dashboard_path
   end
 
   private
