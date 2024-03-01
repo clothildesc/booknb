@@ -23,7 +23,7 @@
             <%= render "bookingform", book: @book, booking: @booking %>
           </div>
           <!-- Booking Buttons -->
-          <div>
+          <div class="mb-3">
             <% if user_signed_in? && @book.user_id != current_user.id %>
               <% booking = @book.bookings.where(user: current_user) %>
               <% if booking.any? %>
@@ -42,7 +42,7 @@
           </ul>
         </div>
       </div>
-      <div class="col-12 mt-3">
+      <div class="col-12 mt-4">
         <h3>Summary</h3>
         <p class="book-summary col-10"><%= @book.summary%></p>
       </div>
