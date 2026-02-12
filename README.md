@@ -1,16 +1,11 @@
-# BookNB 📚
+# Booknb
 
 An Airbnb-style platform for book lovers. Share, discover, and borrow books from your community.
 
 ## 📋 About The Project
 
-**BookNB** is a peer-to-peer book sharing platform developed during Le Wagon bootcamp. Inspired by Airbnb's marketplace model, BookNB connects book owners with readers, promoting a sustainable and community-driven approach to reading.
-
-Instead of buying every book you want to read, BookNB allows you to:
-- List your personal books for others to borrow
-- Browse and borrow books from nearby book lovers
-- Build a community around shared reading interests
-- Save money while reducing environmental impact
+**Booknb** is a peer-to-peer book sharing platform developed during Le Wagon bootcamp. Inspired by Airbnb's marketplace model, Booknb connects book owners with readers.
+Instead of buying every book you want to read, Booknb allows you to list your personal books for others to borrow, and browse and borrow books from nearby book lovers.
 
 **👥 This project was developed as a team project during Le Wagon bootcamp.**
 
@@ -37,27 +32,14 @@ Instead of buying every book you want to read, BookNB allows you to:
 ## ✨ Features
 
 ### For Book Owners
-- 📖 **List your books** with photos, descriptions, and availability
-- 💰 **Set your terms** - free lending or rental pricing
-- 📍 **Location-based** sharing with nearby readers
-- ⭐ **Build reputation** through ratings and reviews
-- 📊 **Track your library** - see which books are borrowed
+- **List your books** with photos, descriptions, and availability
+- **Location-based** sharing with nearby readers
+- **Track your library** - see which books are borrowed
 
 ### For Book Borrowers
-- 🔍 **Search & discover** books by title, author, or genre
-- 🗺️ **Find nearby books** using geolocation
-- 📅 **Request bookings** for specific dates
-- 💬 **Message owners** to coordinate pickup/return
-- ❤️ **Save favorites** and create reading wishlists
-- ⭐ **Rate & review** books and lenders
-
-### Platform Features
-- 👤 **User profiles** with reading preferences and history
-- 🔐 **Secure authentication** and authorization
-- 📱 **Responsive design** - works on all devices
-- 🔔 **Notifications** for booking requests and messages
-- 💳 **Payment integration** (for rental bookings)
-- 🌐 **Community feed** with latest listings
+- **Search & discover** books by title, author, or genre
+- **Find nearby books** using geolocation
+- **Request bookings** for specific dates
 
 ## 🚀 Getting Started
 
@@ -112,7 +94,7 @@ rails server
    - Title, author, genre
    - Description and condition
    - Upload a photo
-   - Set availability and pricing
+   - Set availability
 4. Publish your listing
 
 ### Borrowing a Book
@@ -124,143 +106,16 @@ rails server
 5. Wait for owner approval
 6. Arrange pickup with the owner
 7. Enjoy your book!
-8. Return the book and leave a review
-
-### Managing Bookings
-
-**As an Owner:**
-- Review incoming booking requests
-- Accept or decline with a message
-- Coordinate pickup/return times
-- Mark books as borrowed/returned
-- Rate borrowers
-
-**As a Borrower:**
-- View your upcoming and past bookings
-- Cancel requests if needed
-- Track due dates
-- Message owners for coordination
-
-## 📁 Project Structure
-
-```
-booknb/
-├── app/
-│   ├── controllers/      # Application logic
-│   ├── models/           # Database models
-│   │   ├── user.rb      # User accounts
-│   │   ├── book.rb      # Book listings
-│   │   ├── booking.rb   # Rental bookings
-│   │   └── review.rb    # Ratings and reviews
-│   ├── views/            # HTML templates
-│   ├── javascript/       # Stimulus controllers
-│   └── assets/           # Styles and images
-├── config/               # Rails configuration
-├── db/                   # Database migrations
-└── test/                 # Test suite
-```
-
-## 🗄️ Database Schema
-
-Key models and relationships:
-
-**User**
-- Has many books (as owner)
-- Has many bookings (as borrower)
-- Has many reviews (given and received)
-
-**Book**
-- Belongs to a user (owner)
-- Has many bookings
-- Has many reviews
-- Geocoded for location
-
-**Booking**
-- Belongs to a book
-- Belongs to a user (borrower)
-- Has statuses: pending, accepted, declined, completed
-- Stores start/end dates and pricing
-
-**Review**
-- Belongs to a booking
-- Rates both book and borrower/lender
-- Contains rating (1-5) and comment
-
-## 🌟 Key Features Implementation
-
-### Geolocation
-- **Geocoder gem** for address-to-coordinates conversion
-- **Mapbox/Google Maps** for interactive map display
-- Distance-based search to find nearby books
-
-### Image Upload
-- **Cloudinary** integration for photo storage
-- Image optimization and CDN delivery
-- Drag-and-drop upload interface
-
-### Real-time Notifications
-- **Action Cable** for live updates
-- Instant notification of booking requests
-- Message notifications
-
-### Search & Filters
-- **PgSearch** for full-text search
-- Filter by genre, distance, availability
-- Sort by date, price, or rating
-
-## 🎨 Design Highlights
-
-- Clean, modern interface inspired by Airbnb
-- Card-based book listings with hover effects
-- Interactive map for location browsing
-- Mobile-first responsive design
-- Smooth animations and transitions
-
-## 🚧 Future Enhancements
-
-- [ ] Integrated messaging system
-- [ ] Book recommendations based on reading history
-- [ ] Community reading groups
-- [ ] Book clubs and events
-- [ ] Mobile app (iOS/Android)
-- [ ] Delivery/shipping options
-- [ ] Reading challenges and badges
-- [ ] Social features (follow users, activity feed)
-- [ ] ISBN barcode scanner for quick book addition
-- [ ] Integration with Goodreads API
-
-## 🧪 Testing
-
-Run the test suite:
-```bash
-rails test
-rails test:system
-```
-
-## 🐳 Docker
-
-The project includes Docker support:
-
-```bash
-docker-compose up
-```
 
 ## 👥 Team
 
 This project was developed by a team of 4 developers during Le Wagon bootcamp:
 
-- **Clothilde Scache** - [@clothildesc](https://github.com/clothildesc)
-- **Zena Giulia** - [@ZenaGiulia](https://github.com/ZenaGiulia)
+- **Clothilde** - [@clothildesc](https://github.com/clothildesc)
+- **Zena** - [@ZenaGiulia](https://github.com/ZenaGiulia)
 - **Pierre** - [@abele17](https://github.com/abele17)
-- **Isaiah Zalc** - [@IsaiahZalc](https://github.com/IsaiahZalc)
-
-## 🙏 Acknowledgments
-
-- [Le Wagon](https://www.lewagon.com/) - For the incredible bootcamp experience
-- [Airbnb](https://www.airbnb.com/) - For the marketplace inspiration
-- Our instructors and TAs for their guidance
-- The book-loving community
-
+- **Isaiah** - [@IsaiahZalc](https://github.com/IsaiahZalc)
+  
 ## 📄 License
 
 This project was created as part of Le Wagon bootcamp curriculum.
