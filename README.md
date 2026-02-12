@@ -7,7 +7,11 @@ An Airbnb-style platform for book lovers. Share, discover, and borrow books from
 **Booknb** is a peer-to-peer book sharing platform developed during Le Wagon bootcamp. Inspired by Airbnb's marketplace model, Booknb connects book owners with readers.
 Instead of buying every book you want to read, Booknb allows you to list your personal books for others to borrow, and browse and borrow books from nearby book lovers.
 
-**👥 This project was developed as a team project during Le Wagon bootcamp.**
+**This project was developed as a team project during Le Wagon bootcamp.**
+
+<br>
+<img width="1420" height="687" alt="Capture d’écran 2026-02-12 à 18 34 17" src="https://github.com/user-attachments/assets/e911324f-1b1a-4626-bebf-0007940621bb" />
+<br>
 
 ## 🛠️ Built With
 
